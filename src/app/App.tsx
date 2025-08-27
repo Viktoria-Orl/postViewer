@@ -1,8 +1,8 @@
-import './App.css'
+import MainLayout from "../shared/layouts/MainLayout"
 
 function App() {
   return (
-    <h1>Post and comment viewer app</h1>
+    <MainLayout />
   )
 }
 
