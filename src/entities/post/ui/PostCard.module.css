@@ -1,0 +1,19 @@
+.postCard {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.postCard > * {
+  margin-bottom: 16px;
+}
+
+.postCardTitle {
+  font-style: italic;
+}
+
+.postCardAuthorId {
+  color: rgb(54, 53, 53);
+  text-align: right;
+  margin-bottom: 0;
+}
