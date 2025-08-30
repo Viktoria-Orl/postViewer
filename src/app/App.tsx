@@ -1,9 +1,10 @@
-import MainLayout from "../shared/layouts/MainLayout"
+import MainLayout from "../shared/layouts/MainLayout";
+import { ThemeProvider } from "../shared/lib/theme/ThemeProvider";
 
-function App() {
+export default function App() {
   return (
-    <MainLayout />
-  )
+    <ThemeProvider>
+      <MainLayout />
+    </ThemeProvider>
+  );
 }
-
-export default App
