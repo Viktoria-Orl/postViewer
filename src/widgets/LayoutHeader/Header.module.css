@@ -18,3 +18,8 @@
   background-color: #646464;
   color: #e0dddd;
 }
+
+.actions {
+  display: flex;
+  flex-direction: row;
+}
