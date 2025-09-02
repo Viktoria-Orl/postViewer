@@ -6,11 +6,11 @@ import styles from "./MainLayout.module.css";
 export default function MainLayout() {
   return (
     <div className={styles.mainLayout}>
-      <Header></Header>
+      <Header />
       <main className={styles.mainContent}>
-        <PostList></PostList>
+        <PostList />
       </main>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }
