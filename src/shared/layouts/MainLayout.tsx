@@ -5,9 +5,9 @@ import PostList from "../../widgets/PostList/PostList";
 export default function MainLayout() {
   return (
     <div>
-      <Header></Header>
-      <PostList></PostList>
-      <Footer></Footer>
+      <Header />
+      <PostList />
+      <Footer />
     </div>
   );
 }
