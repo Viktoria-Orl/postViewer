@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import { Button } from "../Button/Button";
 import styles from "./Modal.module.css";
 import { useTheme } from "../../lib/theme/useTheme";
+import type { FC } from "react";
 
 type ModalProps = {
   isOpen: boolean;
@@ -10,25 +11,18 @@ type ModalProps = {
   children: React.ReactNode;
 };
 
-export default function Modal({
-  isOpen,
-  onClose,
-  title,
-  children,
-}: ModalProps) {
+export const Modal: FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
   const modalRoot = document.getElementById("portal-root");
   const { theme } = useTheme();
 
   if (!isOpen || !modalRoot) return null;
 
-
   return createPortal(
     <div className={styles.modalOverlay} onClick={onClose}>
       <div
-      className={`${styles.modalContent} ${
-          theme === "dark" ? styles.dark : styles.light
-        }`}
-        onClick={(e) => e.stopPropagation()}>
+        className={`${styles.modalContent} ${styles[theme]}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className={styles.modalHeader}>
           <Button onClick={onClose}>❌</Button>
           {title && <h2>{title}</h2>}
@@ -36,6 +30,6 @@ export default function Modal({
         <div className={styles.modalBody}>{children}</div>
       </div>
     </div>,
-    modalRoot
+    modalRoot,
   );
-}
+};

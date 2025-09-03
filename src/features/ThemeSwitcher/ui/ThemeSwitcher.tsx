@@ -1,9 +1,14 @@
+import type { FC } from "react";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 import { Button } from "../../../shared/ui/Button/Button";
 
-export function ThemeSwitcher() {
+export const ThemeSwitcher: FC = () => {
   const { theme, toggleTheme } = useTheme();
-  const icon = theme === "light" ? "🔆" : "🌙";
+  const icon: string = theme === "light" ? "🔆" : "🌙";
 
-  return <Button onClick={toggleTheme}>{icon}</Button>;
-}
+  const handleToggle = () => {
+    toggleTheme();
+  };
+
+  return <Button onClick={handleToggle}>{icon}</Button>;
+};

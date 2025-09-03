@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, type FC } from "react";
 import { ThemeContext, type Theme } from "./ThemeContext";
 
-export function ThemeProvider({ children }: React.PropsWithChildren) {
+export const ThemeProvider: FC<React.PropsWithChildren> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>("light");
 
   function toggleTheme() {
@@ -13,4 +13,4 @@ export function ThemeProvider({ children }: React.PropsWithChildren) {
       {children}
     </ThemeContext.Provider>
   );
-}
+};
