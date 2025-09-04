@@ -4,8 +4,9 @@ import { useTheme } from "../../shared/lib/theme/useTheme";
 import { mockPosts } from "../../shared/mocks/posts";
 import type { Post } from "../../entities/post/model/types";
 import { PostCard } from "../../entities/post/ui/PostCard";
+import { withLoading } from "../../shared/lib/hoc/withLoading";
 
-export const PostList: FC = () => {
+export const PostListBase: FC = () => {
   const { theme } = useTheme();
 
   return (
@@ -18,3 +19,5 @@ export const PostList: FC = () => {
     </div>
   );
 };
+
+export const PostList = withLoading(PostListBase);
