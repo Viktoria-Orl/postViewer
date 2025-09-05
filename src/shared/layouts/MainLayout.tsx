@@ -6,14 +6,14 @@ import styles from "./MainLayout.module.css";
 import { useTheme } from "../lib/theme/useTheme";
 
 export const MainLayout: FC = () => {
-  const {theme} = useTheme();
+  const { theme } = useTheme();
   const [isLoading, setIsLoading] = useState(true);
 
   // Simulate data fetching or async operation
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);

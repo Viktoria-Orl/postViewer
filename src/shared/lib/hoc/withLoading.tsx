@@ -1,12 +1,12 @@
 import type { FC } from "react";
-import styles from './withLoading.module.css';
+import styles from "./withLoading.module.css";
 
 type WithLoadingProps = {
   isLoading: boolean;
 };
 
 export const withLoading = <P extends object>(
-  WrappedComponent: FC<P>
+  WrappedComponent: FC<P>,
 ): FC<P & WithLoadingProps> => {
   return function WithLoadingComponent({
     isLoading,

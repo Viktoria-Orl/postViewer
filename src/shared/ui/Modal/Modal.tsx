@@ -18,8 +18,8 @@ export const Modal: FC<ModalProps> & {
   const { theme } = useTheme();
 
   if (!isOpen || !modalRoot) return null;
-  
-  console.log(styles.modalHeader); 
+
+  console.log(styles.modalHeader);
   console.log(styles.modalBody);
 
   return createPortal(
@@ -35,17 +35,17 @@ export const Modal: FC<ModalProps> & {
   );
 };
 
-export const ModalHeader: FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className={styles.modalHeader}>{children}</div>
-);
+export const ModalHeader: FC<{ children: React.ReactNode }> = ({
+  children,
+}) => <div className={styles.modalHeader}>{children}</div>;
 
 export const ModalBody: FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className={styles.modalBody}>{children}</div>
 );
 
-export const ModalFooter: FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className={styles.modalFooter}>{children}</div>
-);
+export const ModalFooter: FC<{ children: React.ReactNode }> = ({
+  children,
+}) => <div className={styles.modalFooter}>{children}</div>;
 
 Modal.Header = ModalHeader;
 Modal.Body = ModalBody;
