@@ -4,7 +4,7 @@
   border-radius: 8px;
 }
 
-.postCard > * {
+.postCard > *:not(:last-child) {
   margin-bottom: 16px;
 }
 
@@ -12,9 +12,10 @@
   font-style: italic;
 }
 
-.postCardAuthorId {
-  text-align: right;
-  margin-bottom: 0;
+.postCardFooter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .light {
@@ -25,4 +26,9 @@
 .dark {
   background-color: #444;
   color: #fff;
+}
+
+.toggleButton {
+  font-size: 16px;
+  padding: 0;
 }

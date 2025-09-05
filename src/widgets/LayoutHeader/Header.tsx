@@ -23,6 +23,11 @@ const modalContent = (
       MainLayout
     </p>
     <p>✅ Настроена фильтрация постов по длине заголовка</p>
+    <p>
+      ✅ Добавлены комментарии к постам CommentList, которые
+      разворачиваются/сворачиваются из постов PostCard (в PostCard для
+      комментариев использованы useState, useCallback)
+    </p>
   </>
 );
 
@@ -53,7 +58,7 @@ export const Header: FC = () => {
             target="_blank"
             className={styles.link}
           >
-            GitHub проекта
+            🔗 GitHub проекта
           </a>
         </Modal.Footer>
       </Modal>

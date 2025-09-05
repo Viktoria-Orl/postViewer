@@ -7,6 +7,7 @@ import { PostCard } from "../../entities/post/ui/PostCard";
 import { withLoading } from "../../shared/lib/hoc/withLoading";
 import { filterByLength } from "../../features/PostLengthFilter/lib/filterByLength";
 import { PostLengthFilter } from "../../features/PostLengthFilter/ui/PostLengthFilter";
+import { mockComments } from "../../shared/mocks/comments";
 
 export const PostListBase: FC = () => {
   const { theme } = useTheme();
@@ -37,11 +38,16 @@ export const PostListBase: FC = () => {
         onMaxChange={handleMaxChange}
       />
       <div className={`${styles.postList} ${styles[theme]}`}>
-        {filteredPosts.map((post: Post) => (
-          <Fragment key={post.id}>
-            <PostCard post={post} />
-          </Fragment>
-        ))}
+        {filteredPosts.map((post: Post) => {
+          const postComments = mockComments.filter(
+            (comment) => comment.postId === post.id,
+          );
+          return (
+            <Fragment key={post.id}>
+              <PostCard post={post} comments={postComments} />
+            </Fragment>
+          );
+        })}
       </div>
     </>
   );
