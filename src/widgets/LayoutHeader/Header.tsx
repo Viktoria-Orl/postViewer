@@ -28,6 +28,12 @@ const modalContent = (
       разворачиваются/сворачиваются из постов PostCard (в PostCard для
       комментариев использованы useState, useCallback)
     </p>
+    <p>
+      ✅ Оптимизирован PostList: мемоизация через useMemo для filteredPosts и
+      postsWithComments, хендлеры для фильтров мемоизированы через useCallback,
+      логика фильтрации вынесена в отдельный usePostFilter, логика получения
+      комментариев к посту вынесена в отдельный usePostComments.
+    </p>
   </>
 );
 

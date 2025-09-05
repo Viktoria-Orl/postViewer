@@ -12,3 +12,8 @@ export type Comment = {
   email: string;
   body: string;
 };
+
+export type PostWithComments = {
+  post: Post;
+  comments: Comment[];
+};
