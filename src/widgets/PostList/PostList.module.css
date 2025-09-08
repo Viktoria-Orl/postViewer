@@ -4,3 +4,11 @@
   gap: 16px;
   padding: 16px;
 }
+
+.light {
+  background-color: #fff;
+}
+
+.dark {
+  background-color: #646464;
+}

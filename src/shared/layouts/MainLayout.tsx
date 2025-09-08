@@ -1,13 +1,17 @@
-import Footer from "../../widgets/LayoutFooter/Footer";
-import Header from "../../widgets/LayoutHeader/Header";
-import PostList from "../../widgets/PostList/PostList";
+import type { FC } from "react";
+import { Footer } from "../../widgets/LayoutFooter/Footer";
+import { Header } from "../../widgets/LayoutHeader/Header";
+import { PostList } from "../../widgets/PostList/PostList";
+import styles from "./MainLayout.module.css";
 
-export default function MainLayout() {
+export const MainLayout: FC = () => {
   return (
-    <div>
+    <div className={styles.mainLayout}>
       <Header />
-      <PostList />
+      <main className={styles.mainСontent}>
+        <PostList />
+      </main>
       <Footer />
     </div>
   );
-}
+};

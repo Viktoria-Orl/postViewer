@@ -1,4 +1,25 @@
 .header {
-  padding: 25px 16px;
-  background-color: #f0f0f0;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.dark {
+  background-color: #646464;
+  color: #e0dddd;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
 }

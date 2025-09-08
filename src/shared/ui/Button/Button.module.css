@@ -1,0 +1,26 @@
+.button {
+  padding: 6px;
+  font-size: 20px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover {
+  border-color: #9c9a9a;
+}
+
+.button:active {
+  background-color: transparent;
+  transform: scale(0.9);
+}

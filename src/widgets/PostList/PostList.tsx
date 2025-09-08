@@ -1,14 +1,20 @@
+import { Fragment, type FC } from "react";
 import styles from "./PostList.module.css";
-import type { Post } from "../../entities/post/ui/PostCard";
-import { postsMock } from "../../shared/mocks/posts";
-import PostCard from "../../entities/post/ui/PostCard";
+import { useTheme } from "../../shared/lib/theme/useTheme";
+import { mockPosts } from "../../shared/mocks/posts";
+import type { Post } from "../../entities/post/model/types";
+import { PostCard } from "../../entities/post/ui/PostCard";
 
-export default function PostList() {
+export const PostList: FC = () => {
+  const { theme } = useTheme();
+
   return (
-    <div className={styles.postList}>
-      {postsMock.map((post: Post) => (
-        <PostCard key={post.id} post={post}></PostCard>
+    <div className={`${styles.postList} ${styles[theme]}`}>
+      {mockPosts.map((post: Post) => (
+        <Fragment key={post.id}>
+          <PostCard post={post} />
+        </Fragment>
       ))}
     </div>
   );
-}
+};

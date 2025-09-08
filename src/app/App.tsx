@@ -1,9 +1,11 @@
-import MainLayout from "../shared/layouts/MainLayout"
+import type { FC } from "react";
+import { MainLayout } from "../shared/layouts/MainLayout";
+import { ThemeProvider } from "../shared/lib/theme/ThemeProvider";
 
-function App() {
+export const App: FC = () => {
   return (
-    <MainLayout />
-  )
-}
-
-export default App
+    <ThemeProvider>
+      <MainLayout />
+    </ThemeProvider>
+  );
+};

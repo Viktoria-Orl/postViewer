@@ -1,4 +1,13 @@
 .footer {
   padding: 16px;
-  background-color: #f0f0f0;
+}
+
+.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.dark {
+  background-color: #646464;
+  color: #e0dddd;
 }
