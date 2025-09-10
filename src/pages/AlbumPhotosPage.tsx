@@ -1,9 +1,30 @@
 import type { FC } from "react";
 import { useParams } from "react-router-dom";
+import { useTheme } from "../shared/lib/theme/useTheme";
+import { mockPhotos } from "../shared/mocks/photos";
+import styles from "./AlbumPhotosPage.module.css";
 
 const AlbumPhotosPage: FC = () => {
   const { id } = useParams<{ id: string }>();
-  return <div>Album Photos Page: {id}</div>;
+  const { theme } = useTheme();
+
+  const albumId = Number(id);
+  const photos = mockPhotos.filter((photo) => photo.albumId === albumId);
+
+  if (photos.length === 0) {
+    return <div>No photos found for this album.</div>;
+  }
+
+  return (
+    <div className={`${styles.albumPhotos} ${styles[theme]}`}>
+      {photos.map((photo) => (
+        <div key={photo.id} className={styles.photoCard}>
+          <img src={photo.url} alt={photo.title} />
+          <p>{photo.title}</p>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default AlbumPhotosPage;

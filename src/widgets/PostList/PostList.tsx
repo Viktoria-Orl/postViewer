@@ -1,15 +1,19 @@
 import { Fragment, type FC } from "react";
 import styles from "./PostList.module.css";
 import { useTheme } from "../../shared/lib/theme/useTheme";
-import { mockPosts } from "../../shared/mocks/posts";
 import { PostCard } from "../../entities/post/ui/PostCard";
 import { withLoading } from "../../shared/lib/hoc/withLoading";
 import { PostLengthFilter } from "../../features/PostLengthFilter/ui/PostLengthFilter";
 import { mockComments } from "../../shared/mocks/comments";
-import { usePostFilter } from "./lib/usePostFilter";
-import { usePostComments } from "./lib/usePostComments";
+import { usePostFilter } from "./model/hooks/usePostFilter";
+import { usePostComments } from "./model/hooks/usePostComments";
+import type { Post, PostWithComments } from "../../entities/post/model/types";
 
-export const PostListBase: FC = () => {
+type PostListProps = {
+  posts: Post[];
+};
+
+export const PostListBase: FC<PostListProps> = ({ posts }) => {
   const { theme } = useTheme();
 
   const {
@@ -18,9 +22,12 @@ export const PostListBase: FC = () => {
     maxLength,
     handleMinChange,
     handleMaxChange,
-  } = usePostFilter(mockPosts);
+  } = usePostFilter(posts);
 
-  const postsWithComments = usePostComments(filteredPosts, mockComments);
+  const postsWithComments: PostWithComments[] = usePostComments(
+    filteredPosts,
+    mockComments,
+  );
 
   return (
     <>

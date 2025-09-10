@@ -17,25 +17,31 @@ const PostDetailsPage: FC = () => {
 
   const postComments = useMemo(
     () => mockComments.filter((c) => c.postId === postId),
-    [postId]
+    [postId],
   );
   const hasComments: boolean = postComments.length > 0;
 
   const user: User | undefined = mockUsers.find(
-    (user) => user.id === post?.userId
+    (user) => user.id === post?.userId,
   );
 
   if (!post) return <div>Post witn id {postId} not found</div>;
+  if (!user) return <div>User witn id {post.userId} not found</div>;
 
   return (
     <div className={styles.postDetails}>
       <h1 className={styles.postDetailsTitle}>{post.title}</h1>
-      <Link className={styles.postDetailsAuthor} to={`/users/${post.userId}/posts`}>
-        Author: {user?.name}
+      <Link
+        className={styles.postDetailsAuthor}
+        to={`/users/${post.userId}/posts`}
+      >
+        Author: {user.name}
       </Link>
       <p>{post.body}</p>
 
-      <h2 className={styles.postDetailsCommentsTitle}>{hasComments ? postComments.length : "No"} comments</h2>
+      <h2 className={styles.postDetailsCommentsTitle}>
+        {hasComments ? postComments.length : "No"} comments
+      </h2>
       <CommentList comments={postComments} theme={theme} />
     </div>
   );

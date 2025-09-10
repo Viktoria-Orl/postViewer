@@ -23,7 +23,7 @@ export const PostCard: FC<PostCardProps> = ({ post, comments }) => {
   const hasComments: boolean = comments.length > 0;
 
   const user: User | undefined = mockUsers.find(
-    (user) => user.id === post.userId
+    (user) => user.id === post.userId,
   );
 
   return (
@@ -49,7 +49,7 @@ export const PostCard: FC<PostCardProps> = ({ post, comments }) => {
       </div>
       {isCommentOpen && (
         <div className={styles.postCardComments}>
-          <CommentList comments={comments} theme={theme}/>
+          <CommentList comments={comments} theme={theme} />
         </div>
       )}
     </div>

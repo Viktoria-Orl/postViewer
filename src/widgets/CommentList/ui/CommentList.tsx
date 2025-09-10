@@ -5,11 +5,10 @@ import type { Theme } from "../../../shared/lib/theme/ThemeContext";
 
 type CommentListProps = {
   comments: Comment[];
-  theme: Theme
+  theme: Theme;
 };
 
-export const CommentList: FC<CommentListProps> = ({ comments, theme}) => {
-
+export const CommentList: FC<CommentListProps> = ({ comments, theme }) => {
   return (
     <ul className={`${styles.commentList} ${styles[theme]}`}>
       {comments.map((comment) => (

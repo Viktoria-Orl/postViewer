@@ -1,7 +1,19 @@
+.userNavMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.userName {
+  padding-bottom: 8px;
+  font-size: 20px;
+}
+
 .userTabs {
   display: flex;
+  justify-content: flex-end;
   gap: 8px;
-  border-bottom: 1px solid #d9d9d9;
   position: relative;
 }
 
@@ -15,10 +27,6 @@
   color: inherit;
   position: relative;
   z-index: 1;
-}
-
-.tab:hover {
-  background-color: #9c9a9a;
 }
 
 .activeTab {

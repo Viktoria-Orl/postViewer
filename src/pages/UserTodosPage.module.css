@@ -1,0 +1,42 @@
+.userTodos {
+  display: flex;
+  flex-direction: column;
+}
+
+.userTodoList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+}
+
+.userTodoItem {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  font-size: 18px;
+}
+
+.light .userTodoItem {
+  background-color: #f5f5f5;
+}
+
+.dark .userTodoItem {
+  background-color: #4f4f4f;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.dark {
+  background-color: #646464;
+  color: #e0dddd;
+}
