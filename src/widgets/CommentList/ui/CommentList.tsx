@@ -1,14 +1,14 @@
 import type { FC } from "react";
 import type { Comment } from "../../../entities/post/model/types";
-import { useTheme } from "../../../shared/lib/theme/useTheme";
 import styles from "./CommentList.module.css";
+import type { Theme } from "../../../shared/lib/theme/ThemeContext";
 
 type CommentListProps = {
   comments: Comment[];
+  theme: Theme
 };
 
-export const CommentList: FC<CommentListProps> = ({ comments }) => {
-  const { theme } = useTheme();
+export const CommentList: FC<CommentListProps> = ({ comments, theme}) => {
 
   return (
     <ul className={`${styles.commentList} ${styles[theme]}`}>

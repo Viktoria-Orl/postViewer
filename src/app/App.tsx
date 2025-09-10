@@ -1,11 +1,11 @@
 import type { FC } from "react";
-import { MainLayout } from "../shared/layouts/MainLayout";
 import { ThemeProvider } from "../shared/lib/theme/ThemeProvider";
+import { Router } from "./providers/router/Router";
 
 export const App: FC = () => {
   return (
     <ThemeProvider>
-      <MainLayout />
+      <Router />
     </ThemeProvider>
   );
 };

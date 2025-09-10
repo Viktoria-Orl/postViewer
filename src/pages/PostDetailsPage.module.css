@@ -1,0 +1,25 @@
+.postDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: inherit;
+  background-color: inherit;
+}
+
+.postDetailsAuthor {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.postDetailsAuthor:hover {
+  text-decoration: u;
+  color: inherit;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.postDetailsCommentsTitle{
+  font-size: 20px;
+}

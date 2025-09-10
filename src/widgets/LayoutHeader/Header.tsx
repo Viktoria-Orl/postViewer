@@ -4,6 +4,7 @@ import { useTheme } from "../../shared/lib/theme/useTheme";
 import styles from "./Header.module.css";
 import { Button } from "../../shared/ui/Button/Button";
 import { Modal } from "../../shared/ui/Modal/Modal";
+import { Link } from "react-router-dom";
 
 const modalContent = (
   <>
@@ -12,27 +13,15 @@ const modalContent = (
       рамках учебного проекта.
     </p>
     <p>
-      В рамках <b>домашнего задания 3</b> реализовано:
+      В рамках <b>домашнего задания 4</b> реализовано:
     </p>
     <p>
-      ✅ Реализовано отображение модального окна с использованием compound
-      components
+      ✅ Добавлены маршруты для страниц с постами, комментариями, альбомами,
+      фото и задачами пользователей, а также моки для этих страниц. Настроен
+      роутинг в Router.tsx и подготовлены страницы-заглушки
     </p>
     <p>
-      ✅ Добавлен HOC withLoading для PostList; имитация загрузки и задержки в
-      MainLayout
-    </p>
-    <p>✅ Настроена фильтрация постов по длине заголовка</p>
-    <p>
-      ✅ Добавлены комментарии к постам CommentList, которые
-      разворачиваются/сворачиваются из постов PostCard (в PostCard для
-      комментариев использованы useState, useCallback)
-    </p>
-    <p>
-      ✅ Оптимизирован PostList: мемоизация через useMemo для filteredPosts и
-      postsWithComments, хендлеры для фильтров мемоизированы через useCallback,
-      логика фильтрации вынесена в отдельный usePostFilter, логика получения
-      комментариев к посту вынесена в отдельный usePostComments.
+      ✅ Настроена навигация через NavLink, выведена в отдельный компонент UserTabs
     </p>
   </>
 );
@@ -46,7 +35,9 @@ export const Header: FC = () => {
 
   return (
     <header className={`${styles.header} ${styles[theme]}`}>
-      <h1>Post and comment viewer app</h1>
+      <h1 className={styles.headerTitle}>
+        <Link to="/">Post and comment viewer app</Link>
+      </h1>
       <div className={styles.actions}>
         <Button onClick={openModal}>ℹ️</Button>
         <ThemeSwitcher></ThemeSwitcher>
@@ -62,7 +53,7 @@ export const Header: FC = () => {
           <a
             href="https://github.com/Viktoria-Orl/postViewer/"
             target="_blank"
-            className={styles.link}
+            className={styles.modalLink}
           >
             🔗 GitHub проекта
           </a>

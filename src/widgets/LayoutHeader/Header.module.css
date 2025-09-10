@@ -9,6 +9,30 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
+.headerTitle a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.headerTitle a:hover {
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+}
+
+.modalLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.modalLink:hover {
+  text-decoration: underline;
+}
+
 .light {
   background-color: #fff;
   color: #000;
@@ -17,18 +41,4 @@
 .dark {
   background-color: #646464;
   color: #e0dddd;
-}
-
-.actions {
-  display: flex;
-  flex-direction: row;
-}
-
-.link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.link:hover {
-  text-decoration: underline;
 }
