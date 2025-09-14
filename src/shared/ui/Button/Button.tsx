@@ -1,9 +1,9 @@
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import styles from "./Button.module.css";
 
 type ButtonProps = {
   onClick: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 };
 
