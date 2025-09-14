@@ -4,6 +4,7 @@ import { Header } from "../../widgets/LayoutHeader/Header";
 import { PostList } from "../../widgets/PostList/PostList";
 import styles from "./MainLayout.module.css";
 import { useTheme } from "../lib/theme/useTheme";
+import clsx from "clsx";
 
 export const MainLayout: FC = () => {
   const { theme } = useTheme();
@@ -21,7 +22,7 @@ export const MainLayout: FC = () => {
   return (
     <div className={styles.mainLayout}>
       <Header />
-      <main className={`${styles.mainContent} ${styles[theme]}`}>
+      <main className={clsx(styles.mainContent, styles[theme])}>
         <PostList isLoading={isLoading} />
       </main>
       <Footer />

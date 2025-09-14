@@ -8,6 +8,7 @@ import { PostLengthFilter } from "../../features/PostLengthFilter/ui/PostLengthF
 import { mockComments } from "../../shared/mocks/comments";
 import { usePostFilter } from "./lib/usePostFilter";
 import { usePostComments } from "./lib/usePostComments";
+import clsx from "clsx";
 
 export const PostListBase: FC = () => {
   const { theme } = useTheme();
@@ -30,7 +31,7 @@ export const PostListBase: FC = () => {
         onMinChange={handleMinChange}
         onMaxChange={handleMaxChange}
       />
-      <div className={`${styles.postList} ${styles[theme]}`}>
+      <div className={clsx(styles.postList, styles[theme])}>
         {postsWithComments.map(({ post, comments }) => (
           <Fragment key={post.id}>
             <PostCard post={post} comments={comments} />

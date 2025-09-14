@@ -4,6 +4,7 @@ import { useTheme } from "../../shared/lib/theme/useTheme";
 import styles from "./Header.module.css";
 import { Button } from "../../shared/ui/Button/Button";
 import { Modal } from "../../shared/ui/Modal/Modal";
+import clsx from "clsx";
 
 const modalContent = (
   <>
@@ -35,6 +36,7 @@ const modalContent = (
       через useCallback в usePostFilter, логика получения комментариев к посту
       вынесена в отдельный usePostComments.
     </p>
+    <p>✅ Настроена стилизация через clsx</p>
   </>
 );
 
@@ -46,7 +48,7 @@ export const Header: FC = () => {
   const closeModal = () => setIsOpen(false);
 
   return (
-    <header className={`${styles.header} ${styles[theme]}`}>
+    <header className={clsx(styles.header, styles[theme])}>
       <h1>Post and comment viewer app</h1>
       <div className={styles.actions}>
         <Button onClick={openModal}>ℹ️</Button>

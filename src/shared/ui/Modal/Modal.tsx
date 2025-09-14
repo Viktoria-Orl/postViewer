@@ -5,6 +5,7 @@ import type { FC, ReactNode } from "react";
 import { ModalHeader } from "./ModalHeader";
 import { ModalBody } from "./ModalBody";
 import { ModalFooter } from "./ModalFooter";
+import clsx from "clsx";
 
 type ModalProps = {
   isOpen: boolean;
@@ -25,7 +26,7 @@ export const Modal: FC<ModalProps> & {
   return createPortal(
     <div className={styles.modalOverlay} onClick={closeModal}>
       <div
-        className={`${styles.modalContent} ${styles[theme]}`}
+        className={clsx(styles.modalContent, styles[theme])}
         onClick={(e) => e.stopPropagation()}
       >
         {children}

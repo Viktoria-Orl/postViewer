@@ -1,6 +1,7 @@
 import { memo, type ChangeEvent, type FC } from "react";
 import styles from "./PostLengthFilter.module.css";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
+import clsx from "clsx";
 
 type PostLengthFilterProps = {
   minLength: number;
@@ -26,7 +27,7 @@ const PostLengthFilterBase: FC<PostLengthFilterProps> = ({
   };
 
   return (
-    <div className={`${styles.filter} ${styles[theme]}`}>
+    <div className={clsx(styles.filter, styles[theme])}>
       <span>Filter posts by header length:</span>
 
       <label>
