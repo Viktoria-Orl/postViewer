@@ -26,13 +26,14 @@ const modalContent = (
     <p>
       ✅ Добавлены комментарии к постам CommentList, которые
       разворачиваются/сворачиваются из постов PostCard (в PostCard для
-      комментариев использованы useState, useCallback)
+      комментариев использован useState)
     </p>
     <p>
       ✅ Оптимизирован PostList: мемоизация через useMemo для filteredPosts и
-      postsWithComments, хендлеры для фильтров мемоизированы через useCallback,
-      логика фильтрации вынесена в отдельный usePostFilter, логика получения
-      комментариев к посту вынесена в отдельный usePostComments.
+      postsWithComments, логика фильтрации вынесена в отдельный usePostFilter,
+      PostLengthFilter обернут в React.memo, хендлеры для фильтров мемоизированы
+      через useCallback в usePostFilter, логика получения комментариев к посту
+      вынесена в отдельный usePostComments.
     </p>
   </>
 );

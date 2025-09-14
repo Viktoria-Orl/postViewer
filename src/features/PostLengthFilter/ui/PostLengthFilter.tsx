@@ -1,4 +1,4 @@
-import { type ChangeEvent, type FC } from "react";
+import { memo, type ChangeEvent, type FC } from "react";
 import styles from "./PostLengthFilter.module.css";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 
@@ -9,7 +9,7 @@ type PostLengthFilterProps = {
   onMaxChange: (value: number) => void;
 };
 
-export const PostLengthFilter: FC<PostLengthFilterProps> = ({
+const PostLengthFilterBase: FC<PostLengthFilterProps> = ({
   minLength,
   maxLength,
   onMinChange,
@@ -49,3 +49,5 @@ export const PostLengthFilter: FC<PostLengthFilterProps> = ({
     </div>
   );
 };
+
+export const PostLengthFilter = memo(PostLengthFilterBase);
