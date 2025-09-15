@@ -1,8 +1,9 @@
-import type { FC } from "react";
+import { type FC } from "react";
 import type { Comment } from "../../../entities/post/model/types";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 import styles from "./CommentList.module.css";
 import clsx from "clsx";
+import { CommentCard } from "../../../entities/comment/ui/CommentCard";
 
 type CommentListProps = {
   comments: Comment[];
@@ -12,13 +13,10 @@ export const CommentList: FC<CommentListProps> = ({ comments }) => {
   const { theme } = useTheme();
 
   return (
-    <ul className={clsx(styles.commentList, styles[theme])}>
+    <div className={clsx(styles.commentList, styles[theme])}>
       {comments.map((comment) => (
-        <li key={comment.id} className={styles.comment}>
-          <div className={styles.commentAuthor}>👤 {comment.email}</div>
-          <p className={styles.commentBody}>{comment.body}</p>
-        </li>
+        <CommentCard key={comment.id} comment={comment} />
       ))}
-    </ul>
+    </div>
   );
 };
