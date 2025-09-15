@@ -5,7 +5,7 @@ import styles from "./Header.module.css";
 import { Button } from "../../shared/ui/Button/Button";
 import { Modal } from "../../shared/ui/Modal/Modal";
 import clsx from "clsx";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const modalContent = (
   <>
@@ -36,12 +36,22 @@ export const Header: FC = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate("/");
+  };
+  const isHomePage = location.pathname === "/";
+
   return (
     <header className={clsx(styles.header, styles[theme])}>
       <h1 className={styles.headerTitle}>
         <Link to="/">Post and comment viewer app</Link>
       </h1>
       <div className={styles.actions}>
+        {!isHomePage && (
+          <Button onClick={handleBack}>↩</Button>
+        )}
         <Button onClick={openModal}>ℹ️</Button>
         <ThemeSwitcher></ThemeSwitcher>
       </div>

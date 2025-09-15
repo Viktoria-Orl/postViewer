@@ -29,7 +29,7 @@ export const PostCard: FC<PostCardProps> = ({ post, comments }) => {
 
   return (
     <div className={clsx(styles.postCard, styles[theme])}>
-      <h2 className={styles.postCardTitle}>{post.title}
+      <h2 className={styles.postCardTitle}>
         <Link to={`/posts/${post.id}`}>{post.title}</Link>
       </h2>
       <Link
