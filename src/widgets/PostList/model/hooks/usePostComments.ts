@@ -2,7 +2,7 @@ import type {
   Post,
   Comment,
   PostWithComments,
-} from "../../../../entities/post/model/types";
+} from "../../../../shared/model/types";
 
 export const usePostComments = (
   posts: Post[],

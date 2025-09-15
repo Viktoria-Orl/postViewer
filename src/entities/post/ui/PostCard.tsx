@@ -1,5 +1,5 @@
 import { useState, type FC } from "react";
-import type { Comment, Post, User } from "../model/types";
+import type { Comment, Post, User } from "../../../shared/model/types";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 import styles from "./PostCard.module.css";
 import { CommentList } from "../../../widgets/CommentList/ui/CommentList";

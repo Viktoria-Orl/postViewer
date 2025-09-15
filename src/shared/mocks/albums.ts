@@ -1,4 +1,4 @@
-import type { Album } from "../../entities/post/model/types";
+import type { Album } from "../model/types";
 
 export const mockAlbums: Album[] = [
   {

@@ -1,5 +1,5 @@
 import { useCallback, type FC } from "react";
-import type { Album } from "../../post/model/types";
+import type { Album } from "../../../shared/model/types";
 import styles from "./AlbumCard.module.css";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../../shared/lib/theme/useTheme";

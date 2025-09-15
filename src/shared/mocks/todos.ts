@@ -1,4 +1,4 @@
-import type { Todo } from "../../entities/post/model/types";
+import type { Todo } from "../model/types";
 
 export const mockTodos: Todo[] = [
   {

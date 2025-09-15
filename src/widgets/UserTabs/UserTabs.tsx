@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styles from "./UserTabs.module.css";
 import { useTheme } from "../../shared/lib/theme/useTheme";
-import type { User } from "../../entities/post/model/types";
+import type { User } from "../../shared/model/types";
 import { mockUsers } from "../../shared/mocks/users";
 
 export const UserTabs: FC = () => {

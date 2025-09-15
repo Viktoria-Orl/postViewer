@@ -5,7 +5,7 @@ import { CommentList } from "../../widgets/CommentList/ui/CommentList";
 import { useTheme } from "../../shared/lib/theme/useTheme";
 import styles from "./PostDetailsPage.module.css";
 import { mockUsers } from "../../shared/mocks/users";
-import type { User } from "../../entities/post/model/types";
+import type { User } from "../../shared/model/types";
 import { usePosts } from "../../widgets/PostList/model/hooks/usePosts";
 
 export const PostDetailsPage: FC = () => {

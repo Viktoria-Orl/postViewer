@@ -7,7 +7,7 @@ import { PostLengthFilter } from "../../features/PostLengthFilter/ui/PostLengthF
 import { mockComments } from "../../shared/mocks/comments";
 import { usePostFilter } from "./model/hooks/usePostFilter";
 import { usePostComments } from "./model/hooks/usePostComments";
-import type { Post, PostWithComments } from "../../entities/post/model/types";
+import type { Post, PostWithComments } from "../../shared/model/types";
 import clsx from "clsx";
 
 type PostListProps = {

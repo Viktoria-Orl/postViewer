@@ -1,4 +1,4 @@
-import type { Post } from "../../entities/post/model/types";
+import type { Post } from "../model/types";
 
 export const mockPosts: Post[] = [
   {

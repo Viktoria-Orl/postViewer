@@ -1,4 +1,4 @@
-import type { Comment } from "../../entities/post/model/types";
+import type { Comment } from "../model/types";
 
 export const mockComments: Comment[] = [
   {
