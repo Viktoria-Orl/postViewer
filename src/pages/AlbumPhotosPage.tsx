@@ -6,11 +6,10 @@ import styles from "./AlbumPhotosPage.module.css";
 import clsx from "clsx";
 
 export const AlbumPhotosPage: FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { albumId } = useParams<{ albumId: string }>();
   const { theme } = useTheme();
 
-  const albumId = Number(id);
-  const photos = mockPhotos.filter((photo) => photo.albumId === albumId);
+  const photos = mockPhotos.filter((photo) => photo.albumId === Number(albumId));
 
   if (photos.length === 0) {
     return <div>No photos found for this album.</div>;

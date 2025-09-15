@@ -49,9 +49,7 @@ export const Header: FC = () => {
         <Link to="/">Post and comment viewer app</Link>
       </h1>
       <div className={styles.actions}>
-        {!isHomePage && (
-          <Button onClick={handleBack}>↩</Button>
-        )}
+        {!isHomePage && <Button onClick={handleBack}>↩</Button>}
         <Button onClick={openModal}>ℹ️</Button>
         <ThemeSwitcher></ThemeSwitcher>
       </div>

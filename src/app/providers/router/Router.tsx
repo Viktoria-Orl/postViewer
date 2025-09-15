@@ -6,6 +6,7 @@ import { PostDetailsPage } from "../../../pages/PostDetailsPage";
 import { UserAlbumsPage } from "../../../pages/UserAlbumsPage";
 import { UserTodosPage } from "../../../pages/UserTodosPage";
 import { UserPostsPage } from "../../../pages/UserPostsPage";
+import { AlbumLayout } from "../../../shared/layouts/AlbumLayout";
 import { AlbumPhotosPage } from "../../../pages/AlbumPhotosPage";
 import type { FC } from "react";
 
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
       { index: true, element: <PostsPage /> },
       { path: "posts", element: <PostsPage /> },
       { path: "posts/:id", element: <PostDetailsPage /> },
-      { path: "/albums/:id/photos", element: <AlbumPhotosPage /> },
+      {
+        path: "albums/:albumId",
+        element: <AlbumLayout />,
+        children: [{ path: "photos", element: <AlbumPhotosPage /> }],
+      },
       {
         path: "users/:id",
         element: <UserLayout />,
