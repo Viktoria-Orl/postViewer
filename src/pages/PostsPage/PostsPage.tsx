@@ -1,6 +1,6 @@
 import { useEffect, useState, type FC } from "react";
-import { PostList } from "../widgets/PostList/PostList";
-import { mockPosts } from "../shared/mocks/posts";
+import { PostList } from "../../widgets/PostList/PostList";
+import { mockPosts } from "../../shared/mocks/posts";
 
 export const PostsPage: FC = () => {
   const [isLoading, setIsLoading] = useState(true);

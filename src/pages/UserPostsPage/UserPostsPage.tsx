@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { useParams } from "react-router-dom";
-import { usePosts } from "../widgets/PostList/model/hooks/usePosts";
-import { PostList } from "../widgets/PostList/PostList";
+import { usePosts } from "../../widgets/PostList/model/hooks/usePosts";
+import { PostList } from "../../widgets/PostList/PostList";
 
 export const UserPostsPage: FC = () => {
   const { id } = useParams<{ id: string }>();

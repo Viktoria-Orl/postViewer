@@ -1,13 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MainLayout } from "../../../shared/layouts/MainLayout";
 import { UserLayout } from "../../../shared/layouts/UserLayout";
-import { PostsPage } from "../../../pages/PostsPage";
-import { PostDetailsPage } from "../../../pages/PostDetailsPage";
-import { UserAlbumsPage } from "../../../pages/UserAlbumsPage";
-import { UserTodosPage } from "../../../pages/UserTodosPage";
-import { UserPostsPage } from "../../../pages/UserPostsPage";
+import { PostsPage } from "../../../pages/PostsPage/PostsPage";
+import { PostDetailsPage } from "../../../pages/PostDetailsPage/PostDetailsPage";
+import { UserAlbumsPage } from "../../../pages/UserAlbumsPage/UserAlbumsPage";
+import { UserTodosPage } from "../../../pages/UserTodosPage/UserTodosPage";
+import { UserPostsPage } from "../../../pages/UserPostsPage/UserPostsPage";
 import { AlbumLayout } from "../../../shared/layouts/AlbumLayout";
-import { AlbumPhotosPage } from "../../../pages/AlbumPhotosPage";
+import { AlbumPhotosPage } from "../../../pages/AlbumPhotosPage/AlbumPhotosPage";
 import type { FC } from "react";
 
 const router = createBrowserRouter([

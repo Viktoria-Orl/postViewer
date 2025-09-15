@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { useParams } from "react-router-dom";
-import { useTheme } from "../shared/lib/theme/useTheme";
-import { mockTodos } from "../shared/mocks/todos";
+import { useTheme } from "../../shared/lib/theme/useTheme";
+import { mockTodos } from "../../shared/mocks/todos";
 import styles from "./UserTodosPage.module.css";
 
 export const UserTodosPage: FC = () => {

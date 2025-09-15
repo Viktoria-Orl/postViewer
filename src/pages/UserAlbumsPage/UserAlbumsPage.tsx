@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { useParams } from "react-router-dom";
-import { mockAlbums } from "../shared/mocks/albums";
-import { AlbumCard } from "../entities/album/ui/AlbumCard";
+import { mockAlbums } from "../../shared/mocks/albums";
+import { AlbumCard } from "../../entities/album/ui/AlbumCard";
 
 export const UserAlbumsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
