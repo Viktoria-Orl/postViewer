@@ -4,6 +4,7 @@ import styles from "./AlbumCard.module.css";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 import { Button } from "../../../shared/ui/Button/Button";
+import clsx from "clsx";
 
 type AlbumCardProps = {
   album: Album;
@@ -18,7 +19,7 @@ export const AlbumCard: FC<AlbumCardProps> = ({ album }) => {
   }, [album.id, navigate]);
 
   return (
-    <div className={`${styles.albumCard} ${styles[theme]}`}>
+    <div className={clsx(styles.albumCard, styles[theme])}>
       <h2 className={styles.albumCardTitle}>Album: "{album.title}"</h2>
       <Button onClick={handleOpenAlbum} className={styles.albumCardOpenButton}>
         Open Album

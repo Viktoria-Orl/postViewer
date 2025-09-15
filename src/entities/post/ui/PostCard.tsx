@@ -1,9 +1,10 @@
-import { useCallback, useState, type FC } from "react";
+import { useState, type FC } from "react";
 import type { Comment, Post, User } from "../model/types";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 import styles from "./PostCard.module.css";
 import { CommentList } from "../../../widgets/CommentList/ui/CommentList";
 import { Button } from "../../../shared/ui/Button/Button";
+import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { mockUsers } from "../../../shared/mocks/users";
 
@@ -16,9 +17,9 @@ export const PostCard: FC<PostCardProps> = ({ post, comments }) => {
   const { theme } = useTheme();
   const [isCommentOpen, setIsCommentOpen] = useState(false);
 
-  const toggleComments = useCallback(() => {
+  const toggleComments = () => {
     setIsCommentOpen((prev) => !prev);
-  }, []);
+  };
 
   const hasComments: boolean = comments.length > 0;
 
@@ -27,8 +28,8 @@ export const PostCard: FC<PostCardProps> = ({ post, comments }) => {
   );
 
   return (
-    <div className={`${styles.postCard} ${styles[theme]}`}>
-      <h2 className={styles.postCardTitle}>
+    <div className={clsx(styles.postCard, styles[theme])}>
+      <h2 className={styles.postCardTitle}>{post.title}
         <Link to={`/posts/${post.id}`}>{post.title}</Link>
       </h2>
       <Link

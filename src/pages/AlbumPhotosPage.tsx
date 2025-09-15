@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import { useTheme } from "../shared/lib/theme/useTheme";
 import { mockPhotos } from "../shared/mocks/photos";
 import styles from "./AlbumPhotosPage.module.css";
+import clsx from "clsx";
 
-const AlbumPhotosPage: FC = () => {
+export const AlbumPhotosPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const { theme } = useTheme();
 
@@ -16,7 +17,7 @@ const AlbumPhotosPage: FC = () => {
   }
 
   return (
-    <div className={`${styles.albumPhotos} ${styles[theme]}`}>
+    <div className={clsx(styles.albumPhotos, styles[theme])}>
       {photos.map((photo) => (
         <div key={photo.id} className={styles.photoCard}>
           <img src={photo.url} alt={photo.title} />
@@ -26,5 +27,3 @@ const AlbumPhotosPage: FC = () => {
     </div>
   );
 };
-
-export default AlbumPhotosPage;

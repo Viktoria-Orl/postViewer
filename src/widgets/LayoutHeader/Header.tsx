@@ -4,6 +4,7 @@ import { useTheme } from "../../shared/lib/theme/useTheme";
 import styles from "./Header.module.css";
 import { Button } from "../../shared/ui/Button/Button";
 import { Modal } from "../../shared/ui/Modal/Modal";
+import clsx from "clsx";
 import { Link } from "react-router-dom";
 
 const modalContent = (
@@ -36,7 +37,7 @@ export const Header: FC = () => {
   const closeModal = () => setIsOpen(false);
 
   return (
-    <header className={`${styles.header} ${styles[theme]}`}>
+    <header className={clsx(styles.header, styles[theme])}>
       <h1 className={styles.headerTitle}>
         <Link to="/">Post and comment viewer app</Link>
       </h1>

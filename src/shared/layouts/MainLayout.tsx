@@ -3,6 +3,7 @@ import { Footer } from "../../widgets/LayoutFooter/Footer";
 import { Header } from "../../widgets/LayoutHeader/Header";
 import styles from "./MainLayout.module.css";
 import { useTheme } from "../lib/theme/useTheme";
+import clsx from "clsx";
 import { Outlet } from "react-router-dom";
 
 export const MainLayout: FC = () => {
@@ -11,7 +12,7 @@ export const MainLayout: FC = () => {
   return (
     <div className={styles.mainLayout}>
       <Header />
-      <main className={`${styles.mainContent} ${styles[theme]}`}>
+      <main className={clsx(styles.mainContent, styles[theme])}>
         <Outlet />
       </main>
       <Footer />

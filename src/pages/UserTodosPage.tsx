@@ -4,7 +4,7 @@ import { useTheme } from "../shared/lib/theme/useTheme";
 import { mockTodos } from "../shared/mocks/todos";
 import styles from "./UserTodosPage.module.css";
 
-const UserTodosPage: FC = () => {
+export const UserTodosPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const { theme } = useTheme();
   const userId = Number(id);
@@ -28,5 +28,3 @@ const UserTodosPage: FC = () => {
     </div>
   );
 };
-
-export default UserTodosPage;

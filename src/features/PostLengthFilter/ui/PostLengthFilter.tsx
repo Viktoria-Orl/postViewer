@@ -1,6 +1,7 @@
-import { type ChangeEvent, type FC } from "react";
+import { memo, type ChangeEvent, type FC } from "react";
 import styles from "./PostLengthFilter.module.css";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
+import clsx from "clsx";
 
 type PostLengthFilterProps = {
   minLength: number;
@@ -9,7 +10,7 @@ type PostLengthFilterProps = {
   onMaxChange: (value: number) => void;
 };
 
-export const PostLengthFilter: FC<PostLengthFilterProps> = ({
+const PostLengthFilterBase: FC<PostLengthFilterProps> = ({
   minLength,
   maxLength,
   onMinChange,
@@ -26,7 +27,7 @@ export const PostLengthFilter: FC<PostLengthFilterProps> = ({
   };
 
   return (
-    <div className={`${styles.filter} ${styles[theme]}`}>
+    <div className={clsx(styles.filter, styles[theme])}>
       <span>Filter posts by header length:</span>
 
       <label>
@@ -49,3 +50,5 @@ export const PostLengthFilter: FC<PostLengthFilterProps> = ({
     </div>
   );
 };
+
+export const PostLengthFilter = memo(PostLengthFilterBase);

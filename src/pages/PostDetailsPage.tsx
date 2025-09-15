@@ -8,7 +8,7 @@ import styles from "./PostDetailsPage.module.css";
 import { mockUsers } from "../shared/mocks/users";
 import type { User } from "../entities/post/model/types";
 
-const PostDetailsPage: FC = () => {
+export const PostDetailsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const { theme } = useTheme();
   const postId = Number(id);
@@ -46,5 +46,3 @@ const PostDetailsPage: FC = () => {
     </div>
   );
 };
-
-export default PostDetailsPage;

@@ -8,6 +8,7 @@ import { mockComments } from "../../shared/mocks/comments";
 import { usePostFilter } from "./model/hooks/usePostFilter";
 import { usePostComments } from "./model/hooks/usePostComments";
 import type { Post, PostWithComments } from "../../entities/post/model/types";
+import clsx from "clsx";
 
 type PostListProps = {
   posts: Post[];
@@ -37,7 +38,7 @@ export const PostListBase: FC<PostListProps> = ({ posts }) => {
         onMinChange={handleMinChange}
         onMaxChange={handleMaxChange}
       />
-      <div className={`${styles.postList} ${styles[theme]}`}>
+      <div className={clsx(styles.postList, styles[theme])}>
         {postsWithComments.map(({ post, comments }) => (
           <Fragment key={post.id}>
             <PostCard post={post} comments={comments} />

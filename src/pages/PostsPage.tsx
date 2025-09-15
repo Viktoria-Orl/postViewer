@@ -2,7 +2,7 @@ import { useEffect, useState, type FC } from "react";
 import { PostList } from "../widgets/PostList/PostList";
 import { mockPosts } from "../shared/mocks/posts";
 
-const PostsPage: FC = () => {
+export const PostsPage: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   // Simulate data fetching or async operation
@@ -16,5 +16,3 @@ const PostsPage: FC = () => {
 
   return <PostList posts={mockPosts} isLoading={isLoading} />;
 };
-
-export default PostsPage;

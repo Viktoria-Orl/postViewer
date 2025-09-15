@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { mockAlbums } from "../shared/mocks/albums";
 import { AlbumCard } from "../entities/album/ui/AlbumCard";
 
-const UserAlbumsPage: FC = () => {
+export const UserAlbumsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const userId = Number(id);
 
@@ -14,12 +14,10 @@ const UserAlbumsPage: FC = () => {
   }
 
   return (
-    <div /*  className={`${styles.albumsList} ${styles[theme]}`} */>
+    <div>
       {userAlbums.map((album) => (
         <AlbumCard key={album.id} album={album} />
       ))}
     </div>
   );
 };
-
-export default UserAlbumsPage;
