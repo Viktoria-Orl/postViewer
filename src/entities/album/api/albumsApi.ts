@@ -12,7 +12,11 @@ export const albumsApi = createApi({
       query: () => "albums",
       providesTags: ["Albums"],
     }),
+    getAlbumsByUserId: builder.query<Album[], number>({
+      query: (userId) => `albums?userId=${userId}`,
+      providesTags: ["Albums"],
+    }),
   }),
 });
 
-export const { useGetAlbumsQuery } = albumsApi;
+export const { useGetAlbumsQuery, useGetAlbumsByUserIdQuery } = albumsApi;

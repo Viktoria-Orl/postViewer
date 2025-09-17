@@ -50,7 +50,7 @@ export const PostCard: FC<PostCardProps> = ({ post, comments }) => {
       </div>
       {isCommentOpen && (
         <div className={styles.postCardComments}>
-          <CommentList comments={comments} theme={theme} />
+          <CommentList comments={comments} />
         </div>
       )}
     </div>

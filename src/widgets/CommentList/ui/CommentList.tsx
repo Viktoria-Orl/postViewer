@@ -3,14 +3,15 @@ import type { Comment } from "../../../shared/model/types";
 import styles from "./CommentList.module.css";
 import clsx from "clsx";
 import { CommentCard } from "../../../entities/comment/ui/CommentCard";
-import type { Theme } from "../../../shared/lib/theme/ThemeContext";
+import { useTheme } from "../../../shared/lib/theme/useTheme";
 
 type CommentListProps = {
   comments: Comment[];
-  theme: Theme;
 };
 
-export const CommentList: FC<CommentListProps> = ({ comments, theme }) => {
+export const CommentList: FC<CommentListProps> = ({ comments }) => {
+  const { theme } = useTheme();
+
   return (
     <div className={clsx(styles.commentList, styles[theme])}>
       {comments.map((comment) => (

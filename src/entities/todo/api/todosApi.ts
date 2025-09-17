@@ -12,7 +12,11 @@ export const todosApi = createApi({
       query: () => "todos",
       providesTags: ["Todos"],
     }),
+    getTodosByUserId: builder.query<Todo[], number>({
+      query: (userId) => `users/${userId}/todos`,
+      providesTags: ["Todos"],
+    }),
   }),
 });
 
-export const { useGetTodosQuery } = todosApi;
+export const { useGetTodosQuery, useGetTodosByUserIdQuery } = todosApi;

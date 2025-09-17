@@ -12,7 +12,11 @@ export const photosApi = createApi({
       query: () => "photos",
       providesTags: ["Photos"],
     }),
+    getPhotosByAlbumId: builder.query<Photo[], number>({
+      query: (albumId) => `albums/${albumId}/photos`,
+      providesTags: ["Photos"],
+    }),
   }),
 });
 
-export const { useGetPhotosQuery } = photosApi;
+export const { useGetPhotosQuery, useGetPhotosByAlbumIdQuery } = photosApi;

@@ -1,14 +1,12 @@
-import { Fragment, type FC } from "react";
+import { type FC } from "react";
 import styles from "./PostList.module.css";
 import { useTheme } from "../../shared/lib/theme/useTheme";
-import { PostCard } from "../../entities/post/ui/PostCard";
 import { withLoading } from "../../shared/lib/hoc/withLoading";
 import { PostLengthFilter } from "../../features/PostLengthFilter/ui/PostLengthFilter";
-import { mockComments } from "../../shared/mocks/comments";
 import { usePostFilter } from "./model/hooks/usePostFilter";
-import { usePostComments } from "../../entities/post/model/hooks/usePostComments";
-import type { Post, PostWithComments } from "../../shared/model/types";
+import type { Post } from "../../shared/model/types";
 import clsx from "clsx";
+import { PostWithCommentsCard } from "../../entities/post/ui/PostWithCommentsCard";
 
 type PostListProps = {
   posts: Post[];
@@ -25,11 +23,6 @@ export const PostListBase: FC<PostListProps> = ({ posts }) => {
     handleMaxChange,
   } = usePostFilter(posts);
 
-  const postsWithComments: PostWithComments[] = usePostComments(
-    filteredPosts,
-    mockComments,
-  );
-
   return (
     <>
       <PostLengthFilter
@@ -39,10 +32,8 @@ export const PostListBase: FC<PostListProps> = ({ posts }) => {
         onMaxChange={handleMaxChange}
       />
       <div className={clsx(styles.postList, styles[theme])}>
-        {postsWithComments.map(({ post, comments }) => (
-          <Fragment key={post.id}>
-            <PostCard post={post} comments={comments} />
-          </Fragment>
+        {filteredPosts.map((post) => (
+          <PostWithCommentsCard key={post.id} post={post} />
         ))}
       </div>
     </>
