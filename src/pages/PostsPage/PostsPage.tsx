@@ -1,16 +1,16 @@
 import { type FC } from "react";
 import { PostList } from "../../widgets/PostList/PostList";
-import { usePosts } from "../../entities/post/model/hooks/usePosts";
+import { useGetPostsQuery } from "../../entities/post/api/postsApi";
 
 export const PostsPage: FC = () => {
-  const { posts, error, isLoading } = usePosts();
+  const { data: posts = [], error, isLoading } = useGetPostsQuery();
 
   if (error) {
     console.error("Ошибка загрузки постов:", error);
     return <div>Ошибка загрузки постов</div>;
   }
 
-  if (posts.length === 0) {
+  if (!isLoading && posts.length === 0) {
     return <div>No posts found.</div>;
   }
 
