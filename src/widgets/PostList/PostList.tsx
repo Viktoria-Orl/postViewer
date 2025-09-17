@@ -6,7 +6,7 @@ import { withLoading } from "../../shared/lib/hoc/withLoading";
 import { PostLengthFilter } from "../../features/PostLengthFilter/ui/PostLengthFilter";
 import { mockComments } from "../../shared/mocks/comments";
 import { usePostFilter } from "./model/hooks/usePostFilter";
-import { usePostComments } from "./model/hooks/usePostComments";
+import { usePostComments } from "../../entities/post/model/hooks/usePostComments";
 import type { Post, PostWithComments } from "../../shared/model/types";
 import clsx from "clsx";
 
