@@ -1,5 +1,4 @@
 import { useState, type FC } from "react";
-import type { Comment, Post, User } from "../../../shared/model/types";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 import styles from "./PostCard.module.css";
 import { CommentList } from "../../../widgets/CommentList/ui/CommentList";
@@ -7,6 +6,9 @@ import { Button } from "../../../shared/ui/Button/Button";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { mockUsers } from "../../../shared/mocks/users";
+import type { Post } from "../model/types";
+import type { User } from "../../user/model/types";
+import type { Comment } from "../../comment/model/types";
 
 type PostCardProps = {
   post: Post;

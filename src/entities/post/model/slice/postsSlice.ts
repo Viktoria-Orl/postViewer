@@ -3,8 +3,8 @@ import {
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import type { Post } from "../../../../shared/model/types";
 import { postsApi } from "../../api/postsApi";
+import type { Post } from "../types";
 
 const postsAdapter = createEntityAdapter<Post>();
 

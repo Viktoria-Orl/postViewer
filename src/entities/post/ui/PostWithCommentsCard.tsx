@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import type { Post } from "../../../shared/model/types";
 import { useGetCommentsByPostIdQuery } from "../../comment/api/commentsApi";
 import { PostCard } from "./PostCard";
+import type { Post } from "../model/types";
 
 type PostWithCommentsCardProps = {
   post: Post;

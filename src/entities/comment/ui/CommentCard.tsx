@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import type { Comment } from "../../../shared/model/types";
+import type { Comment } from "../model/types";
 import styles from "./CommentCard.module.css";
 
 type CommentCardProps = {

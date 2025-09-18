@@ -4,9 +4,9 @@ import { useTheme } from "../../shared/lib/theme/useTheme";
 import { withLoading } from "../../shared/lib/hoc/withLoading";
 import { PostLengthFilter } from "../../features/PostLengthFilter/ui/PostLengthFilter";
 import { usePostFilter } from "./model/hooks/usePostFilter";
-import type { Post } from "../../shared/model/types";
 import clsx from "clsx";
 import { PostWithCommentsCard } from "../../entities/post/ui/PostWithCommentsCard";
+import type { Post } from "../../entities/post/model/types";
 
 type PostListProps = {
   posts: Post[];

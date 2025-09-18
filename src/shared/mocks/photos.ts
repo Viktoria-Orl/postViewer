@@ -1,4 +1,4 @@
-import type { Photo } from "../model/types";
+import type { Photo } from "../../entities/photo/model/types";
 
 export const mockPhotos: Photo[] = [
   {

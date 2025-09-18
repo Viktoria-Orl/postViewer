@@ -3,8 +3,8 @@ import {
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import type { User } from "../../../../shared/model/types";
 import { usersApi } from "../../api/usersApi";
+import type { User } from "../types";
 
 const usersAdapter = createEntityAdapter<User>();
 

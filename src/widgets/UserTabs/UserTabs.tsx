@@ -2,8 +2,8 @@ import type { FC } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styles from "./UserTabs.module.css";
 import { useTheme } from "../../shared/lib/theme/useTheme";
-import type { User } from "../../shared/model/types";
 import { mockUsers } from "../../shared/mocks/users";
+import type { User } from "../../entities/user/model/types";
 
 export const UserTabs: FC = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
-import type { Post } from "../../../../shared/model/types";
 import { filterByLength } from "../../../../features/PostLengthFilter/lib/filterByLength";
+import type { Post } from "../../../../entities/post/model/types";
 
 type UsePostFilterResult = {
   filteredPosts: Post[];
