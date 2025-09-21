@@ -1,4 +1,4 @@
-import { useCallback, type FC } from "react";
+import { type FC, type MouseEventHandler } from "react";
 import styles from "./AlbumCard.module.css";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
@@ -15,9 +15,9 @@ export const AlbumCard: FC<AlbumCardProps> = (props) => {
   const { theme } = useTheme();
   const navigate = useNavigate();
 
-  const handleOpenAlbum = useCallback(() => {
+  const handleOpenAlbum: MouseEventHandler<HTMLButtonElement> = () => {
     navigate(`/albums/${album.id}/photos`);
-  }, [album.id, navigate]);
+  };
 
   return (
     <div className={clsx(styles.albumCard, styles[theme])}>

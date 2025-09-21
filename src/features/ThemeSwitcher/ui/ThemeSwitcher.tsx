@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC, MouseEventHandler } from "react";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 import { Button } from "../../../shared/ui/Button/Button";
 
@@ -6,7 +6,7 @@ export const ThemeSwitcher: FC = () => {
   const { theme, toggleTheme } = useTheme();
   const icon: string = theme === "light" ? "🔆" : "🌙";
 
-  const handleToggle = () => {
+  const handleToggle: MouseEventHandler<HTMLButtonElement> = () => {
     toggleTheme();
   };
 

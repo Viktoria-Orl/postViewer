@@ -1,4 +1,4 @@
-import { useState, type FC } from "react";
+import { useState, type FC, type MouseEventHandler } from "react";
 import { ThemeSwitcher } from "../../features/ThemeSwitcher/ui/ThemeSwitcher";
 import { useTheme } from "../../shared/lib/theme/useTheme";
 import styles from "./Header.module.css";
@@ -17,7 +17,14 @@ const modalContent = (
       В рамках <b>домашнего задания 6</b> реализовано:
     </p>
     <p>✅ Типизированы все сущности</p>
-    <p>✅ Внедрен дженерик ItemList, все страницы переписаны на его использование, props теперь принимаются как единое значение и деструктурируются внутри компонента</p>
+    <p>
+      ✅ Внедрен дженерик ItemList, страницы переписаны на его использование
+    </p>
+    <p>
+      ✅ Пропсы принимаются как единое значение и деструктурируются внутри
+      компонента
+    </p>
+    <p>✅ Типизированы обработчики событий</p>
   </>
 );
 
@@ -25,8 +32,11 @@ export const Header: FC = () => {
   const { theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const openModal: MouseEventHandler<HTMLButtonElement> = () => setIsOpen(true);
+  const closeModal: MouseEventHandler<HTMLButtonElement> = () =>
+    setIsOpen(false);
+  const closeModalOverlay: MouseEventHandler<HTMLDivElement> = () =>
+    setIsOpen(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -46,7 +56,7 @@ export const Header: FC = () => {
         <ThemeSwitcher></ThemeSwitcher>
       </div>
 
-      <Modal isOpen={isOpen} closeModal={closeModal}>
+      <Modal isOpen={isOpen} closeModal={closeModalOverlay}>
         <Modal.Header>
           <Button onClick={closeModal}>❌</Button>
           <h2>О проекте</h2>

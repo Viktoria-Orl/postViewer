@@ -1,4 +1,4 @@
-import { useState, type FC } from "react";
+import { useState, type FC, type MouseEventHandler } from "react";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 import styles from "./PostCard.module.css";
 import { CommentList } from "../../../widgets/CommentList/ui/CommentList";
@@ -20,7 +20,7 @@ export const PostCard: FC<PostCardProps> = (props) => {
   const { theme } = useTheme();
   const [isCommentOpen, setIsCommentOpen] = useState(false);
 
-  const toggleComments = () => {
+  const toggleComments: MouseEventHandler<HTMLButtonElement> = () => {
     setIsCommentOpen((prev) => !prev);
   };
 
