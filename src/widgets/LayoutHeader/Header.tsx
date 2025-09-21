@@ -40,7 +40,7 @@ export const Header: FC = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const handleBack = () => {
+  const handleBack: MouseEventHandler<HTMLButtonElement> = () => {
     navigate("/");
   };
   const isHomePage = location.pathname === "/";
