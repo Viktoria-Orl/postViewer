@@ -1,35 +1,41 @@
 import { createPortal } from "react-dom";
-import { Button } from "../Button/Button";
 import styles from "./Modal.module.css";
 import { useTheme } from "../../lib/theme/useTheme";
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
+import { ModalHeader } from "./ModalHeader";
+import { ModalBody } from "./ModalBody";
+import { ModalFooter } from "./ModalFooter";
+import clsx from "clsx";
 
 type ModalProps = {
   isOpen: boolean;
-  onClose: () => void;
-  title?: string;
-  children: React.ReactNode;
+  closeModal: () => void;
+  children: ReactNode;
 };
 
-export const Modal: FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
+export const Modal: FC<ModalProps> & {
+  Header: FC<{ children: ReactNode }>;
+  Body: FC<{ children: ReactNode }>;
+  Footer: FC<{ children: ReactNode }>;
+} = ({ isOpen, closeModal, children }) => {
   const modalRoot = document.getElementById("portal-root");
   const { theme } = useTheme();
 
   if (!isOpen || !modalRoot) return null;
 
   return createPortal(
-    <div className={styles.modalOverlay} onClick={onClose}>
+    <div className={styles.modalOverlay} onClick={closeModal}>
       <div
-        className={`${styles.modalContent} ${styles[theme]}`}
+        className={clsx(styles.modalContent, styles[theme])}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={styles.modalHeader}>
-          <Button onClick={onClose}>❌</Button>
-          {title && <h2>{title}</h2>}
-        </div>
-        <div className={styles.modalBody}>{children}</div>
+        {children}
       </div>
     </div>,
     modalRoot,
   );
 };
+
+Modal.Header = ModalHeader;
+Modal.Body = ModalBody;
+Modal.Footer = ModalFooter;

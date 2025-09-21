@@ -23,3 +23,12 @@
   display: flex;
   flex-direction: row;
 }
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

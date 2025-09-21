@@ -1,15 +1,29 @@
-import type { FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import { Footer } from "../../widgets/LayoutFooter/Footer";
 import { Header } from "../../widgets/LayoutHeader/Header";
 import { PostList } from "../../widgets/PostList/PostList";
 import styles from "./MainLayout.module.css";
+import { useTheme } from "../lib/theme/useTheme";
+import clsx from "clsx";
 
 export const MainLayout: FC = () => {
+  const { theme } = useTheme();
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate data fetching or async operation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className={styles.mainLayout}>
       <Header />
-      <main className={styles.mainСontent}>
-        <PostList />
+      <main className={clsx(styles.mainContent, styles[theme])}>
+        <PostList isLoading={isLoading} />
       </main>
       <Footer />
     </div>

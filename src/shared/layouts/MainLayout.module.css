@@ -6,4 +6,15 @@
 
 .mainContent {
   flex: 1;
+  padding: 16px;
+}
+
+.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.dark {
+  background-color: #646464;
+  color: #e0dddd;
 }
