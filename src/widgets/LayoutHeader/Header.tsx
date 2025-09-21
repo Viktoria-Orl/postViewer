@@ -6,33 +6,7 @@ import { Button } from "../../shared/ui/Button/Button";
 import { Modal } from "../../shared/ui/Modal/Modal";
 import clsx from "clsx";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
-const modalContent = (
-  <>
-    <p>
-      Приложение для просмотра постов и комментариев Post viewer app, создано в
-      рамках учебного проекта.
-    </p>
-    <p>
-      В рамках <b>домашнего задания 6</b> реализовано:
-    </p>
-    <p>
-      ✅ Типизированы сущности, обработчики событий, компоненты, использованы
-      `PropsWithChildren` для компонентов с детьми
-    </p>
-    <p>
-      ✅ Внедрен дженерик ItemList, страницы переписаны на его использование
-    </p>
-    <p>
-      ✅ Пропсы принимаются как единое значение и деструктурируются внутри
-      компонента
-    </p>
-    <p>
-      ✅ Настроить строгий режим TypeScript, файлы tsconfig наследуют от
-      tsconfig.base
-    </p>
-  </>
-);
+import { ModalContent } from "../../shared/ui/Modal/modalContent";
 
 export const Header: FC = () => {
   const { theme } = useTheme();
@@ -67,7 +41,9 @@ export const Header: FC = () => {
           <Button onClick={closeModal}>❌</Button>
           <h2>О проекте</h2>
         </Modal.Header>
-        <Modal.Body>{modalContent}</Modal.Body>
+        <Modal.Body>
+          <ModalContent />
+        </Modal.Body>
         <Modal.Footer>
           <a
             href="https://github.com/Viktoria-Orl/postViewer/"
