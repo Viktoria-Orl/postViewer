@@ -19,8 +19,3 @@
 .button:hover {
   border-color: #9c9a9a;
 }
-
-.button:active {
-  background-color: transparent;
-  transform: scale(0.9);
-}

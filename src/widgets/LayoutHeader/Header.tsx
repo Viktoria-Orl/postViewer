@@ -5,6 +5,7 @@ import styles from "./Header.module.css";
 import { Button } from "../../shared/ui/Button/Button";
 import { Modal } from "../../shared/ui/Modal/Modal";
 import clsx from "clsx";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const modalContent = (
   <>
@@ -13,30 +14,18 @@ const modalContent = (
       рамках учебного проекта.
     </p>
     <p>
-      В рамках <b>домашнего задания 3</b> реализовано:
+      В рамках <b>домашнего задания 4</b> реализовано:
     </p>
     <p>
-      ✅ Реализовано отображение модального окна с использованием compound
-      components
+      ✅ Добавлены маршруты для страниц с постами, комментариями, альбомами,
+      фото и задачами пользователей, а также моки для этих страниц
     </p>
+    <p>✅ Настроен роутинг в Router.tsx</p>
     <p>
-      ✅ Добавлен HOC withLoading для PostList; имитация загрузки и задержки в
-      MainLayout
+      ✅ Настроена навигация через NavLink, выведена в отдельный компонент
+      UserTabs.tsx
     </p>
-    <p>✅ Настроена фильтрация постов по длине заголовка</p>
-    <p>
-      ✅ Добавлены комментарии к постам CommentList, которые
-      разворачиваются/сворачиваются из постов PostCard (в PostCard для
-      комментариев использован useState)
-    </p>
-    <p>
-      ✅ Оптимизирован PostList: мемоизация через useMemo для filteredPosts и
-      postsWithComments, логика фильтрации вынесена в отдельный usePostFilter,
-      PostLengthFilter обернут в React.memo, хендлеры для фильтров мемоизированы
-      через useCallback в usePostFilter, логика получения комментариев к посту
-      вынесена в отдельный usePostComments.
-    </p>
-    <p>✅ Настроена стилизация через clsx</p>
+    <p>✅ Добавлен кастомный хук для получения постов usePosts.</p>
   </>
 );
 
@@ -47,10 +36,20 @@ export const Header: FC = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate("/");
+  };
+  const isHomePage = location.pathname === "/";
+
   return (
     <header className={clsx(styles.header, styles[theme])}>
-      <h1>Post and comment viewer app</h1>
+      <h1 className={styles.headerTitle}>
+        <Link to="/">Post and comment viewer app</Link>
+      </h1>
       <div className={styles.actions}>
+        {!isHomePage && <Button onClick={handleBack}>↩</Button>}
         <Button onClick={openModal}>ℹ️</Button>
         <ThemeSwitcher></ThemeSwitcher>
       </div>
@@ -65,7 +64,7 @@ export const Header: FC = () => {
           <a
             href="https://github.com/Viktoria-Orl/postViewer/"
             target="_blank"
-            className={styles.link}
+            className={styles.modalLink}
           >
             🔗 GitHub проекта
           </a>

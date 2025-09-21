@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
-import type { Post } from "../../../entities/post/model/types";
-import { filterByLength } from "../../../features/PostLengthFilter/lib/filterByLength";
+import type { Post } from "../../../../shared/model/types";
+import { filterByLength } from "../../../../features/PostLengthFilter/lib/filterByLength";
 
 type UsePostFilterResult = {
   filteredPosts: Post[];
@@ -11,14 +11,8 @@ type UsePostFilterResult = {
 };
 
 export const usePostFilter = (posts: Post[]): UsePostFilterResult => {
-  const minTitleLength = useMemo(
-    () => Math.min(...posts.map((post) => post.title.length)),
-    [posts],
-  );
-  const maxTitleLength = useMemo(
-    () => Math.max(...posts.map((post) => post.title.length)),
-    [posts],
-  );
+  const minTitleLength = Math.min(...posts.map((post) => post.title.length));
+  const maxTitleLength = Math.max(...posts.map((post) => post.title.length));
 
   const [minLength, setMinLength] = useState(minTitleLength);
   const [maxLength, setMaxLength] = useState(maxTitleLength);

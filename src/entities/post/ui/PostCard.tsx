@@ -1,10 +1,12 @@
 import { useState, type FC } from "react";
-import type { Comment, Post } from "../model/types";
+import type { Comment, Post, User } from "../../../shared/model/types";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 import styles from "./PostCard.module.css";
 import { CommentList } from "../../../widgets/CommentList/ui/CommentList";
 import { Button } from "../../../shared/ui/Button/Button";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
+import { mockUsers } from "../../../shared/mocks/users";
 
 type PostCardProps = {
   post: Post;
@@ -21,9 +23,21 @@ export const PostCard: FC<PostCardProps> = ({ post, comments }) => {
 
   const hasComments: boolean = comments.length > 0;
 
+  const user: User | undefined = mockUsers.find(
+    (user) => user.id === post.userId,
+  );
+
   return (
     <div className={clsx(styles.postCard, styles[theme])}>
-      <h2 className={styles.postCardTitle}>{post.title}</h2>
+      <h2 className={styles.postCardTitle}>
+        <Link to={`/posts/${post.id}`}>{post.title}</Link>
+      </h2>
+      <Link
+        to={`/users/${post.userId}/posts`}
+        className={styles.postCardAuthor}
+      >
+        Author: {user?.name}
+      </Link>
       <p>{post.body}</p>
 
       <div className={styles.postCardFooter}>
@@ -36,7 +50,7 @@ export const PostCard: FC<PostCardProps> = ({ post, comments }) => {
       </div>
       {isCommentOpen && (
         <div className={styles.postCardComments}>
-          <CommentList comments={comments} />
+          <CommentList comments={comments} theme={theme} />
         </div>
       )}
     </div>

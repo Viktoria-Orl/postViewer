@@ -1,7 +1,8 @@
-homework-3
+homework-4
 
-- implement modal window rendering using compound components
-- add withLoading HOC for PostList loading state
-- add PostLengthFilter and filterByLength utility
-- add expandable CommentList in PostCard with useState
-- optimize PostList with useMemo/useCallback/React.memo, extract usePostFilter and usePostComments
+- add routes for user posts, comments, albums, photos, and todos
+- create mocks and pages
+- routing in Router.tsx
+- add navigation in UserTabs.tsx
+- implement custom hook usePosts to get posts
+- add back button to posts page

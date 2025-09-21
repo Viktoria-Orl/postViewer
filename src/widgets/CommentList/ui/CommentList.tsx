@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import type { Comment } from "../../../entities/post/model/types";
+import type { Comment } from "../../../shared/model/types";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 import styles from "./CommentList.module.css";
 import clsx from "clsx";

@@ -1,15 +1,39 @@
 .postCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   border: none;
   padding: 16px;
   border-radius: 8px;
 }
 
-.postCard > *:not(:last-child) {
-  margin-bottom: 16px;
-}
-
 .postCardTitle {
   font-style: italic;
+}
+
+.postCardTitle a {
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.8;
+}
+
+.postCardTitle a:hover {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.postCardAuthor {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.postCardAuthor:hover {
+  text-decoration: u;
+  color: inherit;
+  opacity: 1;
+  transition: opacity 0.3s;
 }
 
 .postCardFooter {
@@ -24,7 +48,7 @@
 }
 
 .dark {
-  background-color: #444;
+  background-color: #4f4f4f;
   color: #fff;
 }
 
