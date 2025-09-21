@@ -7,12 +7,14 @@ import { usePostFilter } from "./model/hooks/usePostFilter";
 import clsx from "clsx";
 import { PostWithCommentsCard } from "../../entities/post/ui/PostWithCommentsCard";
 import type { Post } from "../../entities/post/model/types";
+import { ItemList } from "../../shared/ui/ItemList/ItemList";
 
 type PostListProps = {
   posts: Post[];
 };
 
-export const PostListBase: FC<PostListProps> = ({ posts }) => {
+export const PostListBase: FC<PostListProps> = (props) => {
+  const { posts } = props;
   const { theme } = useTheme();
 
   const {
@@ -31,11 +33,13 @@ export const PostListBase: FC<PostListProps> = ({ posts }) => {
         onMinChange={handleMinChange}
         onMaxChange={handleMaxChange}
       />
-      <div className={clsx(styles.postList, styles[theme])}>
-        {filteredPosts.map((post) => (
+      <ItemList
+        items={filteredPosts}
+        renderItem={(post) => (
           <PostWithCommentsCard key={post.id} post={post} />
-        ))}
-      </div>
+        )}
+        className={clsx(styles.postList, styles[theme])}
+      />
     </>
   );
 };

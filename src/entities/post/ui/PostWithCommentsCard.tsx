@@ -7,9 +7,8 @@ type PostWithCommentsCardProps = {
   post: Post;
 };
 
-export const PostWithCommentsCard: FC<PostWithCommentsCardProps> = ({
-  post,
-}) => {
+export const PostWithCommentsCard: FC<PostWithCommentsCardProps> = (props) => {
+  const { post } = props;
   const { data: comments = [], error } = useGetCommentsByPostIdQuery(post.id);
 
   if (error) {

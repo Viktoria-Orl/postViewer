@@ -1,8 +1,4 @@
-homework-4
+homework-6
 
-- add routes for user posts, comments, albums, photos, and todos
-- create mocks and pages
-- routing in Router.tsx
-- add navigation in UserTabs.tsx
-- implement custom hook usePosts to get posts
-- add back button to posts page
+- split types into entity-specific files and update imports
+- add generic ItemList<T> and refactor pages to use it with unified props

@@ -15,7 +15,8 @@ type PostCardProps = {
   comments: Comment[];
 };
 
-export const PostCard: FC<PostCardProps> = ({ post, comments }) => {
+export const PostCard: FC<PostCardProps> = (props) => {
+  const { post, comments } = props;
   const { theme } = useTheme();
   const [isCommentOpen, setIsCommentOpen] = useState(false);
 

@@ -4,21 +4,6 @@
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 
-.photoCard {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border-radius: 8px;
-  padding: 8px;
-  border: 1px solid #d9d9d9;
-  text-align: center;
-}
-
-.photoCard img {
-  width: 100%;
-  border-radius: 4px;
-}
-
 .light {
   background-color: #fff;
   color: #000;

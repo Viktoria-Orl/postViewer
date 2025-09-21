@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { AlbumCard } from "../../entities/album/ui/AlbumCard";
 import { useGetAlbumsByUserIdQuery } from "../../entities/album/api/albumsApi";
 import { skipToken } from "@reduxjs/toolkit/query";
+import styles from "./UserAlbumsPage.module.css";
+import { ItemList } from "../../shared/ui/ItemList/ItemList";
 
 export const UserAlbumsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,10 +29,10 @@ export const UserAlbumsPage: FC = () => {
   }
 
   return (
-    <div>
-      {userAlbums.map((album) => (
-        <AlbumCard key={album.id} album={album} />
-      ))}
-    </div>
+    <ItemList
+      items={userAlbums}
+      renderItem={(album) => <AlbumCard key={album.id} album={album} />}
+      className={styles.userAlbums}
+    />
   );
 };

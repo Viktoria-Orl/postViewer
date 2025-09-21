@@ -17,8 +17,9 @@ export const Modal: FC<ModalProps> & {
   Header: FC<{ children: ReactNode }>;
   Body: FC<{ children: ReactNode }>;
   Footer: FC<{ children: ReactNode }>;
-} = ({ isOpen, closeModal, children }) => {
+} = (props) => {
   const modalRoot = document.getElementById("portal-root");
+  const { isOpen, closeModal, children } = props;
   const { theme } = useTheme();
 
   if (!isOpen || !modalRoot) return null;

@@ -8,7 +8,9 @@ type ButtonProps = {
   className?: string;
 };
 
-export const Button: FC<ButtonProps> = ({ onClick, children, className }) => {
+export const Button: FC<ButtonProps> = (props) => {
+  const { onClick, children, className } = props;
+
   return (
     <button className={clsx(styles.button, className)} onClick={onClick}>
       {children}

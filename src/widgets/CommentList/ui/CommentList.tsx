@@ -4,19 +4,23 @@ import styles from "./CommentList.module.css";
 import clsx from "clsx";
 import { CommentCard } from "../../../entities/comment/ui/CommentCard";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
+import { ItemList } from "../../../shared/ui/ItemList/ItemList";
 
 type CommentListProps = {
   comments: Comment[];
 };
 
-export const CommentList: FC<CommentListProps> = ({ comments }) => {
+export const CommentList: FC<CommentListProps> = (props) => {
+  const { comments } = props;
   const { theme } = useTheme();
 
   return (
-    <div className={clsx(styles.commentList, styles[theme])}>
-      {comments.map((comment) => (
+    <ItemList
+      items={comments}
+      renderItem={(comment) => (
         <CommentCard key={comment.id} comment={comment} />
-      ))}
-    </div>
+      )}
+      className={clsx(styles.commentList, styles[theme])}
+    />
   );
 };

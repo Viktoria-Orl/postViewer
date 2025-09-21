@@ -5,6 +5,8 @@ import styles from "./AlbumPhotosPage.module.css";
 import clsx from "clsx";
 import { useGetPhotosByAlbumIdQuery } from "../../entities/photo/api/photosApi";
 import { skipToken } from "@reduxjs/toolkit/query";
+import { ItemList } from "../../shared/ui/ItemList/ItemList";
+import { PhotoCard } from "../../entities/photo/ui/PhotoCard";
 
 export const AlbumPhotosPage: FC = () => {
   const { theme } = useTheme();
@@ -28,13 +30,10 @@ export const AlbumPhotosPage: FC = () => {
   }
 
   return (
-    <div className={clsx(styles.albumPhotos, styles[theme])}>
-      {photos.map((photo) => (
-        <div key={photo.id} className={styles.photoCard}>
-          <img src={photo.url} alt={photo.title} />
-          <p>{photo.title}</p>
-        </div>
-      ))}
-    </div>
+    <ItemList
+      items={photos}
+      renderItem={(photo) => <PhotoCard key={photo.id} photo={photo} />}
+      className={clsx(styles.albumPhotos, styles[theme])}
+    />
   );
 };

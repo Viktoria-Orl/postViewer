@@ -10,7 +10,8 @@ type AlbumCardProps = {
   album: Album;
 };
 
-export const AlbumCard: FC<AlbumCardProps> = ({ album }) => {
+export const AlbumCard: FC<AlbumCardProps> = (props) => {
+  const { album } = props;
   const { theme } = useTheme();
   const navigate = useNavigate();
 

@@ -4,6 +4,9 @@ import { useTheme } from "../../shared/lib/theme/useTheme";
 import styles from "./UserTodosPage.module.css";
 import { useGetTodosByUserIdQuery } from "../../entities/todo/api/todosApi";
 import { skipToken } from "@reduxjs/toolkit/query";
+import clsx from "clsx";
+import { ItemList } from "../../shared/ui/ItemList/ItemList";
+import { TodoCard } from "../../entities/todo/ui/TodoCard";
 
 export const UserTodosPage: FC = () => {
   const { theme } = useTheme();
@@ -29,17 +32,10 @@ export const UserTodosPage: FC = () => {
   }
 
   return (
-    <div className={`${styles.userTodos} ${styles[theme]}`}>
-      <ul className={styles.userTodoList}>
-        {todos.map((todo) => (
-          <li
-            key={todo.id}
-            className={`${styles.userTodoItem} ${todo.completed ? styles.completed : ""}`}
-          >
-            {todo.title}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ItemList
+      items={todos}
+      renderItem={(todo) => <TodoCard key={todo.id} todo={todo} />}
+      className={clsx(styles.userTodoList, styles[theme])}
+    />
   );
 };
