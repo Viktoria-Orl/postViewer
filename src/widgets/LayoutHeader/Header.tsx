@@ -6,7 +6,7 @@ import { Button } from "../../shared/ui/Button/Button";
 import { Modal } from "../../shared/ui/Modal/Modal";
 import clsx from "clsx";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ModalContent } from "../../shared/ui/Modal/modalContent";
+import { ModalContent } from "../../shared/ui/Modal/ModalContent";
 
 export const Header: FC = () => {
   const { theme } = useTheme();
