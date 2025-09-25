@@ -1,10 +1,14 @@
 import type { FC } from "react";
 import { useParams } from "react-router-dom";
 import { useTheme } from "../../shared/lib/theme/useTheme";
-import styles from "./UserTodosPage.module.css";
-import { useGetTodosByUserIdQuery } from "../../entities/todo/api/todosApi";
+import {
+  useGetTodosByUserIdQuery,
+  useDeleteTodoMutation,
+} from "../../entities/todo/api/todosApi";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { Loading } from "../../shared/ui/Loading/Loading";
+import styles from "./UserTodosPage.module.css";
+import { Button } from "../../shared/ui/Button/Button";
 
 export const UserTodosPage: FC = () => {
   const { theme } = useTheme();
@@ -17,6 +21,8 @@ export const UserTodosPage: FC = () => {
     error,
     isLoading,
   } = useGetTodosByUserIdQuery(isInvalidId ? skipToken : userId);
+
+  const [deleteTodo] = useDeleteTodoMutation();
 
   if (isInvalidId) return <div>Invalid user ID</div>;
 
@@ -33,15 +39,30 @@ export const UserTodosPage: FC = () => {
     return <div>No todos found for this user</div>;
   }
 
+  const handleDelete = async (todoId: number) => {
+    try {
+      const result = await deleteTodo({ id: todoId, userId }).unwrap();
+      console.log("delete result:", result);
+      console.log("deleted todo id:", todoId,"Todos render:", todos.map(t => t.id));
+    } catch (error) {
+      console.error("Failed to delete todo:", error);
+    }
+  };
+
   return (
     <div className={`${styles.userTodos} ${styles[theme]}`}>
       <ul className={styles.userTodoList}>
         {todos.map((todo) => (
-          <li
-            key={todo.id}
-            className={`${styles.userTodoItem} ${todo.completed ? styles.completed : ""}`}
-          >
-            {todo.title}
+          <li key={todo.id} className={styles.userTodoItem}>
+            <span className={todo.completed ? styles.completedText : ""}>
+              {todo.title}
+            </span>
+            <Button
+              onClick={() => handleDelete(todo.id)}
+              className={styles.deleteButton}
+            >
+              ❌
+            </Button>
           </li>
         ))}
       </ul>
