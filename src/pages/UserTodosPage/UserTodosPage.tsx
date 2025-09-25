@@ -52,7 +52,9 @@ export const UserTodosPage: FC = () => {
   return (
     <ItemList
       items={todos}
-      renderItem={(todo) => <TodoCard key={todo.id} todo={todo} handleDelete={handleDelete}/>}
+      renderItem={(todo) => (
+        <TodoCard key={todo.id} todo={todo} handleDelete={handleDelete} />
+      )}
       className={clsx(styles.userTodoList, styles[theme])}
     />
   );
