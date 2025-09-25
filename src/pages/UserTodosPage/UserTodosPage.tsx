@@ -41,9 +41,7 @@ export const UserTodosPage: FC = () => {
 
   const handleDelete = async (todoId: number) => {
     try {
-      const result = await deleteTodo({ id: todoId, userId }).unwrap();
-      console.log("delete result:", result);
-      console.log("deleted todo id:", todoId,"Todos render:", todos.map(t => t.id));
+      await deleteTodo({ id: todoId, userId }).unwrap();
     } catch (error) {
       console.error("Failed to delete todo:", error);
     }

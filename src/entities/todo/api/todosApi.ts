@@ -15,7 +15,6 @@ export const todosApi = createApi({
     getTodosByUserId: builder.query<Todo[], number>({
       query: (userId) => `users/${userId}/todos`,
       providesTags: (_result, _error, userId) => {
-        console.log("Provides tag userId:", userId);
         return [{ type: "Todos", id: `USER-${userId}` }];
       },
     }),
