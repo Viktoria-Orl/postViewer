@@ -6,24 +6,36 @@ import { useGetPostByIdQuery } from "../../entities/post/api/postsApi";
 import { useGetCommentsByPostIdQuery } from "../../entities/comment/api/commentsApi";
 import { useGetUserByIdQuery } from "../../entities/user/api/usersApi";
 import { skipToken } from "@reduxjs/toolkit/query";
+import { Loading } from "../../shared/ui/Loading/Loading";
 
 export const PostDetailsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const postId = Number(id);
   const isInvalidId = isNaN(postId);
 
-  const { data: post, error: postError } = useGetPostByIdQuery(
-    isInvalidId ? skipToken : postId,
-  );
+  const {
+    data: post,
+    error: postError,
+    isLoading: isPostLoading,
+  } = useGetPostByIdQuery(isInvalidId ? skipToken : postId);
 
-  const { data: postComments = [], error: commentsError } =
-    useGetCommentsByPostIdQuery(isInvalidId ? skipToken : postId);
+  const {
+    data: postComments = [],
+    error: commentsError,
+    isLoading: isCommentsLoading,
+  } = useGetCommentsByPostIdQuery(isInvalidId ? skipToken : postId);
 
   const userId = post?.userId;
 
-  const { data: user } = useGetUserByIdQuery(userId ?? skipToken);
+  const { data: user, isLoading: isUserLoading } = useGetUserByIdQuery(
+    userId ?? skipToken,
+  );
 
   if (isInvalidId) return <div>Invalid post Id</div>;
+
+  if (isPostLoading || isCommentsLoading || isUserLoading) {
+    return <Loading text="post details" />;
+  }
 
   if (postError) {
     console.error("Error loading post:", postError);

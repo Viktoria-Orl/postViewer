@@ -4,6 +4,7 @@ import { useTheme } from "../../shared/lib/theme/useTheme";
 import styles from "./UserTodosPage.module.css";
 import { useGetTodosByUserIdQuery } from "../../entities/todo/api/todosApi";
 import { skipToken } from "@reduxjs/toolkit/query";
+import { Loading } from "../../shared/ui/Loading/Loading";
 
 export const UserTodosPage: FC = () => {
   const { theme } = useTheme();
@@ -18,6 +19,10 @@ export const UserTodosPage: FC = () => {
   } = useGetTodosByUserIdQuery(isInvalidId ? skipToken : userId);
 
   if (isInvalidId) return <div>Invalid user ID</div>;
+
+  if (isLoading) {
+    return <Loading text="todos" />;
+  }
 
   if (error) {
     console.error("Error loading posts for user:", error);

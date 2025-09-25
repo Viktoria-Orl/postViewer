@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { AlbumCard } from "../../entities/album/ui/AlbumCard";
 import { useGetAlbumsByUserIdQuery } from "../../entities/album/api/albumsApi";
 import { skipToken } from "@reduxjs/toolkit/query";
+import { Loading } from "../../shared/ui/Loading/Loading";
 
 export const UserAlbumsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,6 +17,10 @@ export const UserAlbumsPage: FC = () => {
   } = useGetAlbumsByUserIdQuery(isInvalidId ? skipToken : userId);
 
   if (isInvalidId) return <div>Invalid user ID</div>;
+
+  if (isLoading) {
+    return <Loading text="albums" />;
+  }
 
   if (error) {
     console.error("Error loading albums for user:", error);
