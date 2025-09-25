@@ -1,19 +1,18 @@
-import { useEffect, useState, type FC } from "react";
+import { type FC } from "react";
 import { PostList } from "../../widgets/PostList/PostList";
-import { usePosts } from "../../widgets/PostList/model/hooks/usePosts";
+import { useGetPostsQuery } from "../../entities/post/api/postsApi";
 
 export const PostsPage: FC = () => {
-  const posts = usePosts();
-  const [isLoading, setIsLoading] = useState(true);
+  const { data: posts = [], error, isLoading } = useGetPostsQuery();
 
-  // Simulate data fetching or async operation
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
+  if (error) {
+    console.error("Ошибка загрузки постов:", error);
+    return <div>Ошибка загрузки постов</div>;
+  }
 
-    return () => clearTimeout(timer);
-  }, []);
+  if (!isLoading && posts.length === 0) {
+    return <div>No posts found.</div>;
+  }
 
   return <PostList posts={posts} isLoading={isLoading} />;
 };
