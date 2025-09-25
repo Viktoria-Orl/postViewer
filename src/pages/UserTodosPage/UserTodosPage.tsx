@@ -1,12 +1,16 @@
 import type { FC } from "react";
 import { useParams } from "react-router-dom";
 import { useTheme } from "../../shared/lib/theme/useTheme";
-import styles from "./UserTodosPage.module.css";
-import { useGetTodosByUserIdQuery } from "../../entities/todo/api/todosApi";
+import {
+  useGetTodosByUserIdQuery,
+  useDeleteTodoMutation,
+} from "../../entities/todo/api/todosApi";
 import { skipToken } from "@reduxjs/toolkit/query";
-import clsx from "clsx";
+import { Loading } from "../../shared/ui/Loading/Loading";
 import { ItemList } from "../../shared/ui/ItemList/ItemList";
 import { TodoCard } from "../../entities/todo/ui/TodoCard";
+import styles from "./UserTodosPage.module.css";
+import clsx from "clsx";
 
 export const UserTodosPage: FC = () => {
   const { theme } = useTheme();
@@ -20,7 +24,13 @@ export const UserTodosPage: FC = () => {
     isLoading,
   } = useGetTodosByUserIdQuery(isInvalidId ? skipToken : userId);
 
+  const [deleteTodo] = useDeleteTodoMutation();
+
   if (isInvalidId) return <div>Invalid user ID</div>;
+
+  if (isLoading) {
+    return <Loading text="todos" />;
+  }
 
   if (error) {
     console.error("Error loading posts for user:", error);
@@ -31,10 +41,18 @@ export const UserTodosPage: FC = () => {
     return <div>No todos found for this user</div>;
   }
 
+  const handleDelete = async (todoId: number) => {
+    try {
+      await deleteTodo({ id: todoId, userId }).unwrap();
+    } catch (error) {
+      console.error("Failed to delete todo:", error);
+    }
+  };
+
   return (
     <ItemList
       items={todos}
-      renderItem={(todo) => <TodoCard key={todo.id} todo={todo} />}
+      renderItem={(todo) => <TodoCard key={todo.id} todo={todo} handleDelete={handleDelete}/>}
       className={clsx(styles.userTodoList, styles[theme])}
     />
   );

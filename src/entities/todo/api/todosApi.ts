@@ -14,9 +14,22 @@ export const todosApi = createApi({
     }),
     getTodosByUserId: builder.query<Todo[], number>({
       query: (userId) => `users/${userId}/todos`,
-      providesTags: ["Todos"],
+      providesTags: (_result, _error, userId) => {
+        console.log("Provides tag userId:", userId);
+        return [{ type: "Todos", id: `USER-${userId}` }];
+      },
+    }),
+    deleteTodo: builder.mutation<void, { id: number; userId: number }>({
+      query: ({ id }) => ({ url: `todos/${id}`, method: "DELETE" }),
+      invalidatesTags: (_result, _error, { userId }) => {
+        return [{ type: "Todos", id: `USER-${userId}` }];
+      },
     }),
   }),
 });
 
-export const { useGetTodosQuery, useGetTodosByUserIdQuery } = todosApi;
+export const {
+  useGetTodosQuery,
+  useGetTodosByUserIdQuery,
+  useDeleteTodoMutation,
+} = todosApi;

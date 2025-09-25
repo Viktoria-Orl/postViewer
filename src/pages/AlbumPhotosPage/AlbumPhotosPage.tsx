@@ -5,6 +5,7 @@ import styles from "./AlbumPhotosPage.module.css";
 import clsx from "clsx";
 import { useGetPhotosByAlbumIdQuery } from "../../entities/photo/api/photosApi";
 import { skipToken } from "@reduxjs/toolkit/query";
+import { Loading } from "../../shared/ui/Loading/Loading";
 import { ItemList } from "../../shared/ui/ItemList/ItemList";
 import { PhotoCard } from "../../entities/photo/ui/PhotoCard";
 
@@ -14,11 +15,17 @@ export const AlbumPhotosPage: FC = () => {
   const albumIdNum = Number(albumId);
   const isInvalidId = isNaN(albumIdNum);
 
-  const { data: photos = [], error } = useGetPhotosByAlbumIdQuery(
-    isInvalidId ? skipToken : albumIdNum,
-  );
+  const {
+    data: photos = [],
+    error,
+    isLoading,
+  } = useGetPhotosByAlbumIdQuery(isInvalidId ? skipToken : albumIdNum);
 
   if (isInvalidId) return <div>Invalid album Id</div>;
+
+  if (isLoading) {
+    return <Loading text="photos" />;
+  }
 
   if (error) {
     console.error("Error loading photos:", error);

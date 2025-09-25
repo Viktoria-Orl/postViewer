@@ -1,10 +1,10 @@
 import { type FC } from "react";
 import type { Comment } from "../../../entities/comment/model/types";
-import styles from "./CommentList.module.css";
-import clsx from "clsx";
 import { CommentCard } from "../../../entities/comment/ui/CommentCard";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
 import { ItemList } from "../../../shared/ui/ItemList/ItemList";
+import styles from "./CommentList.module.css";
+import clsx from "clsx";
 
 type CommentListProps = {
   comments: Comment[];
