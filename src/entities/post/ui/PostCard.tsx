@@ -1,31 +1,31 @@
-import { useState, type FC } from "react";
-import type { Comment, Post, User } from "../../../shared/model/types";
+import { useState, type FC, type MouseEventHandler } from "react";
 import { useTheme } from "../../../shared/lib/theme/useTheme";
-import styles from "./PostCard.module.css";
 import { CommentList } from "../../../widgets/CommentList/ui/CommentList";
 import { Button } from "../../../shared/ui/Button/Button";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-import { mockUsers } from "../../../shared/mocks/users";
+import type { Post } from "../model/types";
+import type { Comment } from "../../comment/model/types";
+import { useGetUserByIdQuery } from "../../user/api/usersApi";
+import styles from "./PostCard.module.css";
 
 type PostCardProps = {
   post: Post;
   comments: Comment[];
 };
 
-export const PostCard: FC<PostCardProps> = ({ post, comments }) => {
+export const PostCard: FC<PostCardProps> = (props) => {
+  const { post, comments } = props;
   const { theme } = useTheme();
   const [isCommentOpen, setIsCommentOpen] = useState(false);
 
-  const toggleComments = () => {
+  const toggleComments: MouseEventHandler<HTMLButtonElement> = () => {
     setIsCommentOpen((prev) => !prev);
   };
 
   const hasComments: boolean = comments.length > 0;
 
-  const user: User | undefined = mockUsers.find(
-    (user) => user.id === post.userId,
-  );
+  const { data: user } = useGetUserByIdQuery(post.userId);
 
   return (
     <div className={clsx(styles.postCard, styles[theme])}>
@@ -50,7 +50,7 @@ export const PostCard: FC<PostCardProps> = ({ post, comments }) => {
       </div>
       {isCommentOpen && (
         <div className={styles.postCardComments}>
-          <CommentList comments={comments} theme={theme} />
+          <CommentList comments={comments} />
         </div>
       )}
     </div>

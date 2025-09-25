@@ -1,20 +1,20 @@
-import { Fragment, type FC } from "react";
+import { type FC } from "react";
 import styles from "./PostList.module.css";
 import { useTheme } from "../../shared/lib/theme/useTheme";
-import { PostCard } from "../../entities/post/ui/PostCard";
 import { withLoading } from "../../shared/lib/hoc/withLoading";
 import { PostLengthFilter } from "../../features/PostLengthFilter/ui/PostLengthFilter";
-import { mockComments } from "../../shared/mocks/comments";
 import { usePostFilter } from "./model/hooks/usePostFilter";
-import { usePostComments } from "./model/hooks/usePostComments";
-import type { Post, PostWithComments } from "../../shared/model/types";
 import clsx from "clsx";
+import { PostWithCommentsCard } from "../../entities/post/ui/PostWithCommentsCard";
+import type { Post } from "../../entities/post/model/types";
+import { ItemList } from "../../shared/ui/ItemList/ItemList";
 
 type PostListProps = {
   posts: Post[];
 };
 
-export const PostListBase: FC<PostListProps> = ({ posts }) => {
+export const PostListBase: FC<PostListProps> = (props) => {
+  const { posts } = props;
   const { theme } = useTheme();
 
   const {
@@ -25,11 +25,6 @@ export const PostListBase: FC<PostListProps> = ({ posts }) => {
     handleMaxChange,
   } = usePostFilter(posts);
 
-  const postsWithComments: PostWithComments[] = usePostComments(
-    filteredPosts,
-    mockComments,
-  );
-
   return (
     <>
       <PostLengthFilter
@@ -38,13 +33,13 @@ export const PostListBase: FC<PostListProps> = ({ posts }) => {
         onMinChange={handleMinChange}
         onMaxChange={handleMaxChange}
       />
-      <div className={clsx(styles.postList, styles[theme])}>
-        {postsWithComments.map(({ post, comments }) => (
-          <Fragment key={post.id}>
-            <PostCard post={post} comments={comments} />
-          </Fragment>
-        ))}
-      </div>
+      <ItemList
+        items={filteredPosts}
+        renderItem={(post) => (
+          <PostWithCommentsCard key={post.id} post={post} />
+        )}
+        className={clsx(styles.postList, styles[theme])}
+      />
     </>
   );
 };

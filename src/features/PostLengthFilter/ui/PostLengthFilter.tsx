@@ -10,12 +10,8 @@ type PostLengthFilterProps = {
   onMaxChange: (value: number) => void;
 };
 
-const PostLengthFilterBase: FC<PostLengthFilterProps> = ({
-  minLength,
-  maxLength,
-  onMinChange,
-  onMaxChange,
-}) => {
+const PostLengthFilterBase: FC<PostLengthFilterProps> = (props) => {
+  const { minLength, maxLength, onMinChange, onMaxChange } = props;
   const { theme } = useTheme();
 
   const handleMinLengthChange = (event: ChangeEvent<HTMLInputElement>) => {

@@ -1,16 +1,20 @@
 import type { FC } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import styles from "./UserTabs.module.css";
 import { useTheme } from "../../shared/lib/theme/useTheme";
-import type { User } from "../../shared/model/types";
-import { mockUsers } from "../../shared/mocks/users";
+import { useGetUserByIdQuery } from "../../entities/user/api/usersApi";
+import { skipToken } from "@reduxjs/toolkit/query/react";
+import styles from "./UserTabs.module.css";
 
 export const UserTabs: FC = () => {
   const { id } = useParams<{ id: string }>();
   const { theme } = useTheme();
-  const user: User | undefined = mockUsers.find(
-    (user) => user.id === Number(id),
-  );
+
+  const userId = Number(id);
+  const isInvalidId = isNaN(userId);
+
+  const { data: user } = useGetUserByIdQuery(isInvalidId ? skipToken : userId);
+
+  if (isInvalidId) return <div>Invalid user Id</div>;
 
   if (!user) return <div>User witn id {id} not found</div>;
 

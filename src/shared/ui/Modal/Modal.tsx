@@ -1,23 +1,28 @@
 import { createPortal } from "react-dom";
 import styles from "./Modal.module.css";
 import { useTheme } from "../../lib/theme/useTheme";
-import type { FC, ReactNode } from "react";
+import type {
+  FC,
+  MouseEventHandler,
+  PropsWithChildren,
+  ReactNode,
+} from "react";
 import { ModalHeader } from "./ModalHeader";
 import { ModalBody } from "./ModalBody";
 import { ModalFooter } from "./ModalFooter";
 import clsx from "clsx";
 
-type ModalProps = {
+type ModalProps = PropsWithChildren<{
   isOpen: boolean;
-  closeModal: () => void;
-  children: ReactNode;
-};
+  closeModal: MouseEventHandler<HTMLDivElement>;
+}>;
 
 export const Modal: FC<ModalProps> & {
   Header: FC<{ children: ReactNode }>;
   Body: FC<{ children: ReactNode }>;
   Footer: FC<{ children: ReactNode }>;
-} = ({ isOpen, closeModal, children }) => {
+} = (props) => {
+  const { isOpen, closeModal, children } = props;
   const modalRoot = document.getElementById("portal-root");
   const { theme } = useTheme();
 

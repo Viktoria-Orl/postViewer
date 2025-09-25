@@ -1,4 +1,4 @@
-import { useState, type FC } from "react";
+import { useState, type FC, type MouseEventHandler } from "react";
 import { ThemeSwitcher } from "../../features/ThemeSwitcher/ui/ThemeSwitcher";
 import { useTheme } from "../../shared/lib/theme/useTheme";
 import styles from "./Header.module.css";
@@ -6,39 +6,21 @@ import { Button } from "../../shared/ui/Button/Button";
 import { Modal } from "../../shared/ui/Modal/Modal";
 import clsx from "clsx";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
-const modalContent = (
-  <>
-    <p>
-      Приложение для просмотра постов и комментариев Post viewer app, создано в
-      рамках учебного проекта.
-    </p>
-    <p>
-      В рамках <b>домашнего задания 4</b> реализовано:
-    </p>
-    <p>
-      ✅ Добавлены маршруты для страниц с постами, комментариями, альбомами,
-      фото и задачами пользователей, а также моки для этих страниц
-    </p>
-    <p>✅ Настроен роутинг в Router.tsx</p>
-    <p>
-      ✅ Настроена навигация через NavLink, выведена в отдельный компонент
-      UserTabs.tsx
-    </p>
-    <p>✅ Добавлен кастомный хук для получения постов usePosts.</p>
-  </>
-);
+import { ModalContent } from "../../shared/ui/Modal/ModalContent";
 
 export const Header: FC = () => {
   const { theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const openModal: MouseEventHandler<HTMLButtonElement> = () => setIsOpen(true);
+  const closeModal: MouseEventHandler<HTMLButtonElement> = () =>
+    setIsOpen(false);
+  const closeModalOverlay: MouseEventHandler<HTMLDivElement> = () =>
+    setIsOpen(false);
 
   const location = useLocation();
   const navigate = useNavigate();
-  const handleBack = () => {
+  const handleBack: MouseEventHandler<HTMLButtonElement> = () => {
     navigate("/");
   };
   const isHomePage = location.pathname === "/";
@@ -54,12 +36,14 @@ export const Header: FC = () => {
         <ThemeSwitcher></ThemeSwitcher>
       </div>
 
-      <Modal isOpen={isOpen} closeModal={closeModal}>
+      <Modal isOpen={isOpen} closeModal={closeModalOverlay}>
         <Modal.Header>
           <Button onClick={closeModal}>❌</Button>
           <h2>О проекте</h2>
         </Modal.Header>
-        <Modal.Body>{modalContent}</Modal.Body>
+        <Modal.Body>
+          <ModalContent />
+        </Modal.Body>
         <Modal.Footer>
           <a
             href="https://github.com/Viktoria-Orl/postViewer/"
